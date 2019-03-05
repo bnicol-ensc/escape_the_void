@@ -2,7 +2,7 @@
 try
 {
     $BDD = new PDO(
-        "mysql:host=localhost;dbname=mymovies_bn;charset=utf8", "mymovies_user", "secret",
+        "mysql:host=localhost;dbname=escape_the_void;charset=utf8", "escape_the_void_user", "secret",
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
     );
 }
