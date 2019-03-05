@@ -7,6 +7,9 @@ html, body {
     height: 100%;
 }
 
+.nav {
+    background-color: rgba(0,0,0,0.5);
+}
 
 /*
 ==================================
