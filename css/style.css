@@ -82,8 +82,9 @@ Footer
 ==================================
 */
 .footer {
-    background-color: lightslategray;
+    background-color: rgb(52,58,54);
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
+    color: white
 }
