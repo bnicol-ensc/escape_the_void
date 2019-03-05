@@ -10,11 +10,12 @@
 ?>
 
 <body>
-<?php       
-            require_once("includes/nav2.php");
-            require_once("includes/connect.php");
-?>
+
     <div class="container col-12">
+    <?php       
+            require_once("includes/nav.php");
+            require_once("includes/connect.php");
+    ?>
         <div class="bd-example">
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -38,7 +39,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="images/energy.jpg" class="d-block w-100" alt="Blue lights">
+                    <img src="images/lostlights.jpg" class="d-block w-100" alt="Blue lights">
                     <div class="carousel-caption d-none d-md-block">
                     <h5>It stares back</h5>
                     <p>Work in progress, part III of Escape the VOID</p>
