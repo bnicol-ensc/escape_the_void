@@ -1,17 +1,31 @@
 /*
 ==================================
+Propriétés générales
+==================================
+*/
+html, body {
+    height: 100%;
+}
+
+
+/*
+==================================
 Page de Connexion
 ==================================
 */
-html,body{
+.background{
     height: 100%;
-}
-    
-.container{
-    height: 93%;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
     background-image: url("../images/space_background.jpg");
     background-size: cover;
     align-content: center;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
 }
 
 .card{
@@ -37,7 +51,6 @@ html,body{
 input:focus{
     outline: 0 0 0 0;
     box-shadow: 0 0 0 0;
-
 }
 
 .login_btn{
@@ -66,8 +79,7 @@ Footer
 ==================================
 */
 .footer {
-    background-color: lightgray;
-    border-top: 1px solid #ccc;
+    background-color: lightslategray;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;

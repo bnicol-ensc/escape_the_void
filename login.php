@@ -11,6 +11,7 @@
 ?>
 
 <body>
+    <div class="background">
     <?php
         require_once("includes/nav.php");
         require_once("includes/connect.php");
@@ -82,6 +83,7 @@
         require_once("includes/footer.php");
         require_once("includes/script.php");
     ?>
+    </div>
 </body>
 
 </html>
