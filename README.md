@@ -1,1 +1,2 @@
-# escape_the_void
+# Projet escape game
+## Escape game
