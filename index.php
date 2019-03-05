@@ -10,9 +10,9 @@
 ?>
 
 <body>
-    <div class="container">
+    <div class="container col-12">
         <?php
-            require_once("includes/nav.php");
+            require_once("includes/nav2.php");
             require_once("includes/connect.php");
 
 
