@@ -25,9 +25,9 @@
 
     ?>
 
-    <div class="container">
+    <div class="container_login_register">
         <div class="d-flex justify-content-center h-100">
-            <div class="card">
+            <div class="card_login">
                 <div class="card-header">
                     <h3>Connexion</h3>
                 </div>
