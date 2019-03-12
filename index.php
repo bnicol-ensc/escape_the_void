@@ -59,7 +59,7 @@
             </div>
             <div class="row">
             <div class="col-md-3 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <img class="card-img-top" src="images/command.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Escape the void</h5>
@@ -72,13 +72,13 @@
                     </ul>
                     <div class="card-body">
                         <a href="#" class="btn btn-card">Jouer</a>
-                        <a href="#" class="btn btn-card-secondary">S'enregistrer</a>
+                        <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
                     </div>
                 </div>
             </div>
             
             <div class="col-md-3 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <img class="card-img-top" src="images/asteroid.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Escape the void part two</h5>
@@ -91,12 +91,12 @@
                     </ul>
                     <div class="card-body">
                         <a href="#" class="btn btn-card">Jouer</a>
-                        <a href="#" class="btn btn-card-secondary">S'enregistrer</a>
+                        <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
                     </div>
                 </div>        
             </div>
             <div class="col-md-3 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <img class="card-img-top" src="images/lostlights.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Escape the void Part three</h5>
@@ -109,12 +109,12 @@
                     </ul>
                     <div class="card-body">
                         <a href="#" class="btn btn-card">Jouer</a>
-                        <a href="#" class="btn btn-card-secondary">S'enregistrer</a>
+                        <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
                     </div>
                 </div>       
             </div>
             <div class="col-md-3 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <img class="card-img-top" src="images/stmpnk.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">The Byron Mansion</h5>
@@ -127,7 +127,7 @@
                     </ul>
                     <div class="card-body">
                         <a href="#" class="btn btn-card">Jouer</a>
-                        <a href="#" class="btn btn-card-secondary">S'enregistrer</a>
+                        <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
                     </div>
                 </div>        
             </div>
