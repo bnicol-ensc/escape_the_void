@@ -10,11 +10,17 @@ html, body {
     max-height: 60vh;
     min-height: 30vh;
   }
-  
-.nav {
-    background-color: rgba(0,0,0,0.5);
+
+.navbar {
+    background-color: rgba(0,0,0,0.2);
 }
 
+.btn-card {
+    background-color: rgba(21, 43, 165, 0.7);
+}
+.btn-card-secondary {
+    background-color: rgba(21, 43, 165, 0.3);
+}
 /*
 ==================================
 Page de Connexion

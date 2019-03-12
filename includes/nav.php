@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
+  <div class="container-fluid">
     <a class="navbar-brand" href="index.php">
-      <img src="images/ApertureLogo2.jpg" width="30" height="30" class="d-inline-block align-top" alt="">  
+      <img src="images/stylish.png" width="30" height="30" class="d-inline-block align-top" alt="">  
       Escape Game
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@
       </ul>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="images/login.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          <img src="images/good-fox.png" width="30" height="30" class="d-inline-block align-top" alt="">
             <?php 
                 if(isset($_SESSION['login'])) echo 'Bonjour, '.$_SESSION['login'];
                 else echo 'Non Connecté';
