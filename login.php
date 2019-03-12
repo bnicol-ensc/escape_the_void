@@ -63,13 +63,13 @@
                             }
                         ?>
                         <div class="form-group">
-                            <input type="submit" value="Login" class="btn float-right login_btn">
+                            <input type="submit" value="Login" class="btn float-right login_btn"></br>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Vous n'avez pas de compte ? <a href="#"> S'inscrire</a>
+                        Vous n'avez pas de compte ? <a href="register.php"> S'inscrire</a>
                     </div>
                     <div class="d-flex justify-content-center">
                         <a href="#">Mot de passe oublié ?</a>
