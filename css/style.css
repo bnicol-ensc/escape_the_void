@@ -6,7 +6,11 @@ Propriétés générales
 html, body {
     height: 100%;
 }
-
+.carousel-item {
+    max-height: 60vh;
+    min-height: 30vh;
+  }
+  
 .nav {
     background-color: rgba(0,0,0,0.5);
 }
