@@ -55,9 +55,9 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-</br>
-            </div>
-            <div class="row">
+        </div>
+
+        <div class="row liste">
             <div class="col-md-3 d-flex justify-content-center">
                 <div class="card">
                     <img class="card-img-top" src="images/command.jpg" alt="Card image cap">
@@ -71,7 +71,7 @@
                         <li class="list-group-item">Vestibulum at eros</li>
                     </ul>
                     <div class="card-body">
-                        <a href="#" class="btn btn-card">Jouer</a>
+                        <a href="jouer.php" class="btn btn-card">Jouer</a>
                         <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                         <li class="list-group-item">Vestibulum at eros</li>
                     </ul>
                     <div class="card-body">
-                        <a href="#" class="btn btn-card">Jouer</a>
+                        <a href="wip.php" class="btn btn-card">Jouer</a>
                         <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
                     </div>
                 </div>        
@@ -108,7 +108,7 @@
                         <li class="list-group-item">Vestibulum at eros</li>
                     </ul>
                     <div class="card-body">
-                        <a href="#" class="btn btn-card">Jouer</a>
+                        <a href="wip.php" class="btn btn-card">Jouer</a>
                         <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
                     </div>
                 </div>       
@@ -126,7 +126,7 @@
                         <li class="list-group-item">Vestibulum at eros</li>
                     </ul>
                     <div class="card-body">
-                        <a href="#" class="btn btn-card">Jouer</a>
+                        <a href="wip.php" class="btn btn-card">Jouer</a>
                         <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
                     </div>
                 </div>        

@@ -6,6 +6,12 @@ Propriétés générales
 html, body {
     height: 100%;
 }
+
+/*
+==================================
+Page d'accueil
+==================================
+*/
 .carousel-item {
     max-height: 60vh;
     min-height: 30vh;
@@ -20,6 +26,24 @@ html, body {
 }
 .btn-card-secondary {
     background-color: rgba(21, 43, 165, 0.3);
+}
+
+.liste {
+    margin: 10px 0px 10px 0px;
+}
+/*
+==================================
+Page de Jeux
+==================================
+*/
+.background {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    background-image: url("../images/space_background.jpg");
+    background-size: cover;
+    align-content: center;
 }
 /*
 ==================================
