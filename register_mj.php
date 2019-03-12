@@ -6,7 +6,7 @@
 <html>
 
 <?php
-    $pageTitle = "Inscription";
+    $pageTitle = "Inscription MJ";
     require_once("includes/head.php");
 ?>
 
@@ -21,17 +21,13 @@
         <div class="d-flex justify-content-center h-100">
             <div class="card_register">
                 <div class="card-header">
-                    <h3>Inscription équipe</h3>
+                    <h3>Inscription MJ</h3>
                 </div>
                 <div class="card-body">
                     <form role="form" class="inscription" action="register.php" method="post">
                         <div class="form-group row">
                             <label for="login" class="col-sm-3 col-form-label">Nom d'utilisateur : </label>
                             <input type="text" name="login" class="form-control col-sm-9" required autofocus>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nom_equipe" class="col-sm-3 col-form-label">Nom de l'équipe : </label>
-                            <input type="text" name="nom_equipe" class="form-control col" required>
                         </div>
                         <div class="form-group row">
                             <label for="password" class="col-sm-3 col-form-label">Mot de passe : </label>
@@ -48,7 +44,7 @@
                 </div>
                 <div class="card-footer">
 
-                        Vous êtes un MJ ? <a href="register_mj.php"> Insciption MJ</a>
+                        Vous êtes une équipe ? <a href="register.php"> Insciption équipe</a>
 
                 </div>
             </div>
