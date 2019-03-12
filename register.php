@@ -24,40 +24,23 @@
                     <h3>Inscription</h3>
                 </div>
                 <div class="card-body">
-                    <form role="form" action="register.php" method="post">
-                        <div class="input-group form-group">
-                            <label for="login" class="col-4">Nom d'utilisateur : </label>
-                            <input type="text" class="col-8" name="login" class="form-control" required autofocus>
+                    <form role="form" class="inscription" action="register.php" method="post">
+                        <div class="form-group row">
+                            <label for="login" class="col-sm-3 col-form-label">Nom d'utilisateur : </label>
+                            <input type="text" name="login" class="form-control col-sm-9" required autofocus>
                         </div>
-                        <div class="input-group form-group">
-                            <label for="nom_equipe">Nom de l'équipe : </label>
-                            <input type="text" name="nom_equipe" class="form-control" required>
+                        <div class="form-group row">
+                            <label for="nom_equipe" class="col-sm-3 col-form-label">Nom de l'équipe : </label>
+                            <input type="text" name="nom_equipe" class="form-control col" required>
                         </div>
-                        <div class="input-group form-group">
-                            <label for="password">Mot de passe : </label>
-                            <input type="password" name="password" class="form-control" required>
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-3 col-form-label">Mot de passe : </label>
+                            <input type="password" name="password" class="form-control col" required>
                         </div>
-                        <div class="input-group form-group">
-                            <label for="password">Confirmer le mot de passe : </label>
-                            <input type="password" name="password" class="form-control" required>
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-3 col-form-label">Confirmer le mot de passe : </label>
+                            <input type="password" name="password" class="form-control col" required>
                         </div>
-                        <?php
-                            if((isset($_POST['login'])) && (isset($_POST['password']))){
-                                $login = escape($_POST['login']);
-                                $password = escape($_POST['password']);
-                                if(($login == $tuple['usr_login']) && ($password == $tuple['usr_password'])){
-                                    $_SESSION['login'] = $login;
-                                    echo "<div class=\"alert alert-success\" role=\"alert\">
-                                    Connexion réussie !
-                                    </div>";
-                                    redirect("index");
-                                } else {
-                                    echo "<div class=\"alert alert-danger\" role=\"alert\">
-                                    Identifiant et / ou mot de passe invalide(s) !
-                                    </div>";
-                                }
-                            }
-                        ?>
                         <div class="form-group">
                             <input type="submit" value="S'inscrire" class="btn float-right login_btn"></br>
                         </div>
