@@ -1,2 +1,2 @@
 insert into user values
-(1, "paul", "ochon");
+(1, "pochon", "paul", "ochon");

@@ -1,4 +1,5 @@
-drop table if exists user;
+drop table if exists user_equipe;
+drop table if exists user_mj;
 drop table if exists escapeGame;
 
 create table escapeGame (
@@ -10,7 +11,14 @@ create table escapeGame (
     eg_image varchar(150)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
-create table user (
+create table user_equipe (
+    usr_id integer not null primary key auto_increment,
+    usr_nom varchar(50) not null,
+    usr_login varchar(50) not null,
+    usr_password varchar(88) not null
+) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+create table user_mj (
     usr_id integer not null primary key auto_increment,
     usr_login varchar(50) not null,
     usr_password varchar(88) not null
