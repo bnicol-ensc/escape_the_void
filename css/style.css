@@ -26,6 +26,7 @@ Page d'accueil
 }
 .btn-card-secondary {
     background-color: rgba(21, 43, 165, 0.3);
+    margin-left: 10px;
 }
 
 .liste {
