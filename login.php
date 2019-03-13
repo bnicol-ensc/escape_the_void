@@ -16,12 +16,7 @@
         require_once("includes/nav.php");
         require_once("includes/connect.php");
 
-        if($BDD){
-            $MaRequete = "SELECT * FROM user";
-    
-            $CurseurUser = $BDD->query($MaRequete);
-        }
-        $tuple = $CurseurUser->fetch();
+        
 
     ?>
 
@@ -49,7 +44,15 @@
                             if((isset($_POST['login'])) && (isset($_POST['password']))){
                                 $login = escape($_POST['login']);
                                 $password = escape($_POST['password']);
-                                if(($login == $tuple['usr_login']) && ($password == $tuple['usr_password'])){
+
+                                if($BDD){
+                                    $MaRequete = "SELECT * FROM user_equipe WHERE usr_login='" . $login . "'";
+                            
+                                    $CurseurUser = $BDD->query($MaRequete);
+                                }
+                                $tuple = $CurseurUser->fetch();
+
+                                if(($login == $tuple['usr_login']) && (password_verify($password, $tuple['usr_password']))){
                                     $_SESSION['login'] = $login;
                                     echo "<div class=\"alert alert-success\" role=\"alert\">
                                     Connexion réussie !

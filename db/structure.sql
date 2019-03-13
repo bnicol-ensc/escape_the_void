@@ -15,11 +15,11 @@ create table user_equipe (
     usr_id integer not null primary key auto_increment,
     usr_nom varchar(50) not null,
     usr_login varchar(50) not null,
-    usr_password varchar(88) not null
+    usr_password varchar(255) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table user_mj (
     usr_id integer not null primary key auto_increment,
     usr_login varchar(50) not null,
-    usr_password varchar(88) not null
+    usr_password varchar(255) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;

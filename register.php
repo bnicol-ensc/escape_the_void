@@ -39,17 +39,50 @@
                         </div>
                         <div class="form-group row">
                             <label for="password" class="col-sm-3 col-form-label">Confirmer le mot de passe : </label>
-                            <input type="password" name="password" class="form-control col" required>
+                            <input type="password" name="password_rpt" class="form-control col" required>
                         </div>
+
+                        <?php
+                            if(isset($_POST['login']) && isset($_POST['nom_equipe']) && isset($_POST['password']) && isset($_POST['password_rpt'])){
+                                $login = escape($_POST['login']);
+                                $nom_equipe = escape($_POST['nom_equipe']);
+                                $password = escape($_POST['password']);
+                                $password_rpt = escape($_POST['password_rpt']);
+
+                                if($password == $password_rpt){
+                                    $hash = password_hash($password, PASSWORD_DEFAULT);
+                                    $req = $BDD->prepare('INSERT INTO user_equipe (usr_nom, usr_login, usr_password) VALUES(:nom_equipe, :login, :password)');
+                                    $req->execute(array(
+                                        'nom_equipe' => $nom_equipe,
+                                        'login' => $login,
+                                        'password' => $hash,
+                                    ));
+
+                                    if(!empty($result)) {
+                                        $error_message = "";
+                                        $success_message = "Inscription réussie !";	
+                                        unset($_POST);
+                                    } else {
+                                        $error_message = "Problème durant l'insciption. Veuillez réessayer !";	
+                                    }
+
+                                    $_SESSION['login'] = $login;
+                                    redirect("index");
+                                } else {
+                                    echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                    Les mots de passe ne sont pas les mêmes !
+                                    </div>";
+                                }
+                            }
+                        ?>
+
                         <div class="form-group">
                             <input type="submit" value="S'inscrire" class="btn float-right login_btn"></br>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer">
-
-                        Vous êtes un MJ ? <a href="register_mj.php"> Insciption MJ</a>
-
+                    Vous êtes un MJ ? <a href="register_mj.php"> Insciption MJ</a>
                 </div>
             </div>
         </div>
