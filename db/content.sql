@@ -1,4 +1,4 @@
-insert into user values
+insert into user_equipe values
 (1, "pochon", "paul", "ochon");
 
 INSERT INTO `escapegame` (`eg_nom`, `eg_description_short`, `eg_description_long`, `eg_temps_max`, `eg_image`) VALUES 
