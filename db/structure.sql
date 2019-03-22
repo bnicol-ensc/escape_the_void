@@ -1,6 +1,8 @@
 drop table if exists user_equipe;
 drop table if exists user_mj;
 drop table if exists escapeGame;
+drop table if exists enigme;
+
 
 create table escapeGame (
     eg_id integer not null primary key auto_increment,

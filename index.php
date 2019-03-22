@@ -15,7 +15,9 @@
     <?php       
             require_once("includes/nav.php");
             require_once("includes/connect.php");
+            require_once("includes/connect.php");
     ?>
+
         <div class="bd-example">
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -58,81 +60,43 @@
         </div>
 
         <div class="row liste">
-            <div class="col-md-3 d-flex justify-content-center">
-                <div class="card">
-                    <img class="card-img-top" src="images/command.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Escape the void</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="jouer.php" class="btn btn-card">Jouer</a>
-                        <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-3 d-flex justify-content-center">
-                <div class="card">
-                    <img class="card-img-top" src="images/asteroid.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Escape the void part two</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="wip.php" class="btn btn-card">Jouer</a>
-                        <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
-                    </div>
-                </div>        
-            </div>
-            <div class="col-md-3 d-flex justify-content-center">
-                <div class="card">
-                    <img class="card-img-top" src="images/lostlights.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Escape the void Part three</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="wip.php" class="btn btn-card">Jouer</a>
-                        <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
-                    </div>
-                </div>       
-            </div>
-            <div class="col-md-3 d-flex justify-content-center">
-                <div class="card">
-                    <img class="card-img-top" src="images/stmpnk.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">The Byron Mansion</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="wip.php" class="btn btn-card">Jouer</a>
-                        <a href="register.php" class="btn btn-card-secondary">S'enregistrer</a>
-                    </div>
-                </div>        
-            </div>
-        </div>
+            <?php
+                if($BDD){
+                    $MaRequete = "SELECT * FROM escapegame Order By eg_id";
+                    $CurseurFilm=$BDD->query($MaRequete);
+                    $i = 0;
+                    while ($tuple=$CurseurFilm->fetch()) {
+                        echo "<div class=\"col-md-3 d-flex justify-content-center\"> <div class=\"card\">";
+                        echo "<img class=\"card-img-top\" src=\"images/".$tuple['eg_image']."\" alt=\"Card image cap\">";
+                        echo "<div class=\"card-body\"><h5 class=\"card-title\">".$tuple['eg_nom']."</h5>";
+                        echo "<p class=\"card-text\">".$tuple["eg_description_short"]."</p>";
+                        echo "</div>";
+                        echo "<ul class=\"list-group list-group-flush\">";
+                        echo "<li class=\"list-group-item\">Temps de la mission : ".round($tuple["eg_temps_max"]/60)." minutes</li>";
+                        echo "<li class=\"list-group-item\">"."Dapibus ac facilisis in"."</li>";
+                        echo "</ul>";
+                        echo "<div class=\"card-body\">";
+                        
+                        if(!isset($_SESSION['login']) ) {
+                            echo "<a href=\"login.php\" class=\"btn btn-card\">Jouer</a>"; // Attention il faut que la page login enregistre où elle doit nous amener ensuite ! Sinon c'est retour à l'index et frustration gratuite
+                            echo "<a href=\"register.php\" class=\"btn btn-card-secondary\">S'enregistrer</a>";
+                        }
+                        else echo "<a href=\"jouer.php?id=".$tuple["eg_id"]."\" class=\"btn btn-card\">Jouer</a>";
+                        echo "</div></div></div>";
+                        if($i == 3) {
+                            echo "</div><div class=\"row liste\">";
+                            $i = 0;
+                        }
+                        else $i++;
+                        
+                    }
+                    if($i != 0) {
+                        echo "</div>";
+                        $i = 0;
+                    }
+                }
 
+            ?>
     </div>
 
     <?php require_once("includes/footer.php");?>
