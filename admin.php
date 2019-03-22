@@ -78,11 +78,11 @@
                     require_once("includes/connect.php");
             ?>
 
-            <div class="container-fluid row">
+            <div class="container-fluid row h-100">
                 <div class="col-8">
                     <h2 style="color=white;">MJ</h2>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 d-none d-sm-block">
                     <div id="page-wrap">
                         <h2>Chat</h2>
                         <div id="chat-wrap"><div id="chat-area"></div></div>
