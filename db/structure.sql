@@ -25,3 +25,12 @@ create table user_mj (
     usr_login varchar(50) not null,
     usr_password varchar(255) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+create table enigme (
+    eng_id integer not null primary key auto_increment,
+    eg_id integer not null,
+    eg_type varchar(255) not null,
+    eg_content varchar(2000) not null,
+    eg_css varchar(150),
+    FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id)
+) engine=innodb character set utf8 collate utf8_unicode_ci;
