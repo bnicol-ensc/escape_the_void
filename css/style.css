@@ -139,6 +139,55 @@ label {
 }
 
 
+/*
+==================================
+Chat
+==================================
+*/
+#page-wrap { 
+    width: 300px;
+    float: right;
+}
+
+#page-wrap h2{ 
+    color : white;
+}
+
+#chat-wrap {
+    border: 1px solid #eee;
+    margin: 0 0 15px 0;
+}
+
+#chat-area {
+    height: 300px;
+    overflow: auto;
+    border: 1px solid #666;
+    padding: 20px;
+    background: white;
+}
+
+#chat-area span {
+    color: white;
+    background: #333;
+    margin: 0 5px 0 0;
+}
+
+#chat-area p {
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+#send-message-area p {
+    float: left; color: white;
+}
+
+#sendie {
+    border: 3px solid #999;
+    width: 300px;
+    padding: 10px;
+    float: right;
+}
+
 
 /*
 ==================================
