@@ -23,6 +23,17 @@
             ?>
         </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <?php
+        if(isset($_SESSION['admin'])){
+          echo "<a class=\"dropdown-item\" href=\"admin.php\">Page d'administration</a>";
+        }
+        ?>
+        <a class="dropdown-item" href=
+          <?php 
+            if(!isset($_SESSION['login'])) echo "'register.php'";?>>
+          <?php 
+            if(!isset($_SESSION['login'])) echo 'S\'inscrire';?>
+        </a>
         <a class="dropdown-item" href=
           <?php 
             if(isset($_SESSION['login'])) echo "'logout.php'";
@@ -31,12 +42,6 @@
             if(isset($_SESSION['login'])) echo 'Se Déconnecter';
             else echo 'Se Connecter';
           ?>
-        </a>
-        <a class="dropdown-item" href=
-          <?php 
-            if(!isset($_SESSION['login'])) echo "'register.php'";?>>
-          <?php 
-            if(!isset($_SESSION['login'])) echo 'S\'inscrire';?>
         </a>
   </div>
 </div>

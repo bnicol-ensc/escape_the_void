@@ -40,21 +40,36 @@
                             </div>
                             <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe" required>
                         </div>
+                        <div class="form-group form-check admin_check">
+                            <input type="checkbox" class="form-check-input" id="admin" name="admin">
+                            <label class="form-check-label" for="admin">Administrateur</label>
+                        </div>
                         <?php
                             if((isset($_POST['login'])) && (isset($_POST['password']))){
                                 $login = escape($_POST['login']);
                                 $password = escape($_POST['password']);
 
                                 if($BDD){
-                                    $MaRequete_joueur = "SELECT * FROM user_equipe WHERE usr_login='" . $login . "'";
-                                    $MaRequete_admin = "SELECT * FROM user_equipe WHERE usr_login='" . $login . "'";
+                                        
+                                    if(isset($_POST['admin'])){
+                                        $MaRequete = "SELECT * FROM user_mj WHERE usr_login='" . $login . "'";
                             
-                                    $CurseurUser = $BDD->query($MaRequete_joueur);
+                                        $Curseur = $BDD->query($MaRequete);
+                                    }
+                                    else
+                                    {
+                                        $MaRequete = "SELECT * FROM user_equipe WHERE usr_login='" . $login . "'";
+                            
+                                        $Curseur = $BDD->query($MaRequete);
+                                    }
                                 }
-                                $tuple = $CurseurUser->fetch();
+                                $tuple = $Curseur->fetch();
 
                                 if(($login == $tuple['usr_login']) && (password_verify($password, $tuple['usr_password']))){
                                     $_SESSION['login'] = $login;
+                                    if(isset($_POST['admin'])){
+                                        $_SESSION['admin'] = true;
+                                    }
                                     echo "<div class=\"alert alert-success\" role=\"alert\">
                                     Connexion réussie !
                                     </div>";

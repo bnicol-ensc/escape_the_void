@@ -224,8 +224,8 @@ input:focus {
 }
 
 .login_btn {
-    color: black;
-    background-color: #FFC312;
+    color: black !important;
+    background-color: #FFC312 !important;
     width: 100px;
 }
 
@@ -242,6 +242,15 @@ input:focus {
     margin-left: 4px;
 }
 
+.admin_check {
+    margin: 16px 16px 16px 8px;
+    color:white;
+    font-size: 0.9em;
+}
+
+.admin_check input {
+    margin-top: 7px;
+}
 
 /*
 ==================================
