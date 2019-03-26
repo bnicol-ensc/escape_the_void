@@ -47,6 +47,19 @@ Page de Jeux
     align-content: center;
 }
 
+.btn-group-vertical {
+  margin: 10px 0px 10px 0px;
+}
+
+.console-buttons {
+  align-content: center;
+}
+
+.btn-console {
+  margin: 10px 0px 10px 0px;
+  background-color: #FFC312 !important;
+}
+
 .console{
   background-color: black;
   color: chartreuse;
