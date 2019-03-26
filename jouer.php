@@ -18,16 +18,14 @@
         ?>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-7 d-flex">
-                    <div class="console">
-                        >>This is a test console message
+                <div class="col-md-6 d-flex">
+                    <div class="console w-100 mh-100">
+                        Ship >> Loading Emergency Module ... </br>
+                        Ship >> Do not Panic.
                     </div>
+                    <div class="mh-100" style="width: 100px; height: 200px; background-color: rgba(0,0,255,0.1);">Max-height 100%</div>
                 </div>
                 <div class="col-md-5 d-flex">
-                    <input type="checkbox" disabled data-toggle="toggle" data-onstyle="warning">
-                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="warning">
-                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="warning">
-                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="danger">
                 </div>
         </div>
         <div class="row">

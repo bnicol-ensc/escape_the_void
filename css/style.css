@@ -22,10 +22,10 @@ Page d'accueil
 }
 
 .btn-card {
-    background-color: rgba(21, 43, 165, 0.7);
+    background-color: rgba(21, 43, 165, 0.7) !important;
 }
 .btn-card-secondary {
-    background-color: rgba(21, 43, 165, 0.3);
+    background-color: rgba(21, 43, 165, 0.3) !important;
     margin-left: 10px;
 }
 
@@ -48,9 +48,14 @@ Page de Jeux
 }
 
 .console{
-    background-color: black;
-    color: green;
+  background-color: black;
+  color: chartreuse;
+  height: 300px;
+  box-shadow: #eee;
+  margin: 10px 10px 10px 10px;
+  padding: 5px 5px 5px 5px;
 }
+
 .css-typing p {
     border-right: .15em solid orange;
     font-family: "Courier";
