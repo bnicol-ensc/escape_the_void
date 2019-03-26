@@ -69,33 +69,58 @@
 
 
 
-<body onload="setInterval('chat.update()', 1000)">
+<body onload="setInterval('chat.update()', 1000)" class="d-flex flex-column">
 
     <div class="background">
-            <div class="container-fluid">
-            <?php       
-                    require_once("includes/nav.php");
-                    require_once("includes/connect.php");
-            ?>
+        
+        <?php       
+            require_once("includes/nav.php");
+            require_once("includes/connect.php");
+        ?>
 
-            <div class="container-fluid row h-100">
-                <div class="col-8">
-                    <h2 style="color=white;">MJ</h2>
-                </div>
-                <div class="col-md-4 d-none d-sm-block">
-                    <div id="page-wrap">
-                        <h2>Chat</h2>
-                        <div id="chat-wrap"><div id="chat-area"></div></div>
-                        <form id="send-message-area">
-                            <p>Saisir votre message : </p>
-                            <textarea id="sendie" maxlength = '100' ></textarea>
-                        </form>
+        <div class="container-fluid h-100">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#p1" data-toggle="tab">Escape game 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#p2" data-toggle="tab">Escape game 2</a>
+            </li>
+        </ul>
+
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="p1">
+
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
+                    Ouvrir le chat
+                </button>
+                <div class="collapse" id="chatbox">
+                    <div class="container-fluid row h-100">
+                        <div id="page-wrap">
+                            <h2>Chat</h2>
+                            <div id="chat-wrap"><div id="chat-area"></div></div>
+                            <form id="send-message-area">
+                                <p>Saisir votre message : </p>
+                                <textarea id="sendie" maxlength = '100' ></textarea>
+                            </form>
+                        </div>
                     </div>
                 </div>
+                
             </div>
 
-            <?php require_once("includes/footer.php");?>
-            <?php require_once("includes/script.php"); ?>
+            <div class="tab-pane" id="p2">
+                Panneau 2
+            </div>
+
+        </div>
+
+</div>
+        <?php require_once("includes/footer.php");?>
+        <?php require_once("includes/script.php"); ?>
+
     </div>
 
 </body>

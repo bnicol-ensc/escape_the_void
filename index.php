@@ -11,7 +11,7 @@
 
 <body>
 
-    <div class="container-fluid">
+    
     <?php       
             require_once("includes/nav.php");
             require_once("includes/connect.php");
@@ -59,6 +59,8 @@
             </div>
         </div>
 
+        <div class="container-fluid">
+            
         <div class="row liste">
             <?php
                 if($BDD){
