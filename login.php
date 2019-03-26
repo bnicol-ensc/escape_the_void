@@ -46,9 +46,10 @@
                                 $password = escape($_POST['password']);
 
                                 if($BDD){
-                                    $MaRequete = "SELECT * FROM user_equipe WHERE usr_login='" . $login . "'";
+                                    $MaRequete_joueur = "SELECT * FROM user_equipe WHERE usr_login='" . $login . "'";
+                                    $MaRequete_admin = "SELECT * FROM user_equipe WHERE usr_login='" . $login . "'";
                             
-                                    $CurseurUser = $BDD->query($MaRequete);
+                                    $CurseurUser = $BDD->query($MaRequete_joueur);
                                 }
                                 $tuple = $CurseurUser->fetch();
 

@@ -32,6 +32,12 @@
             else echo 'Se Connecter';
           ?>
         </a>
+        <a class="dropdown-item" href=
+          <?php 
+            if(!isset($_SESSION['login'])) echo "'register.php'";?>>
+          <?php 
+            if(!isset($_SESSION['login'])) echo 'S\'inscrire';?>
+        </a>
   </div>
 </div>
     </div>
