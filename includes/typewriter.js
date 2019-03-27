@@ -1,4 +1,3 @@
-// set up text to print, each item in array is new line
     var iSpeed = 100; // time delay of print out
     var iIndex = 0; // start printing array at this posision
     var iArrLength = aText[0].length; // the length of the text array
@@ -7,28 +6,8 @@
     var iTextPos = 0; // initialise text position
     var sContents = ''; // initialise contents variable
     var iRow; // initialise current row
-    
-    function initAText(databaseText) {
-        
-        var a = databaseText.length;
-        var text = "";
-        var aText = new Array("Ship >> ...");
-        var i;
-        for (i = 0; i < a-1 ; i++) {
-            
-            if (databaseText[i]== "\\" && databaseText[i]== "n")
-            {
-                aText.push(text);
-                text ="";
-            }
-            else {
-                text += databaseText[i];
-            }
-        }
-        return aText;
-    } 
-
-    function typewriter(aText)
+     
+    function typewriter()
     {
      sContents =  ' ';
      iRow = Math.max(0, iIndex-iScrollAt);
@@ -49,5 +28,4 @@
       setTimeout("typewriter()", iSpeed);
      }
     }
-    
     
