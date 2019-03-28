@@ -52,6 +52,16 @@
             
             <div class="row">
                 <div class="col-md-6 d-flex">
+            <?php
+
+            if($BDD){
+                $MaRequete = "SELECT eg_content FROM enigme WHERE eng_id=1";
+                $CurseurEG=$BDD->query($MaRequete);
+                $CurseurEG->fetch();
+                echo $CurseurEG['eg_content']; 
+            }
+
+            ?>
                 </div>
                 <div class="col-md-3 d-flex">
                 </div>
@@ -62,18 +72,16 @@
         <script>
 
             var aText = new Array(
-                /*"Ship >> Loading emergency procedure", 
-                "Ship >> Emergency procedures not found, please refer to emergency manual, page 4",
-                "Ship >> Do not panic, as a panicked crew has 95% more chances of dying in time of crisis",*/
                 <?php //Il est surement pertinent de tout mettre dans une fonction au lieu d'écrire du code en vrac ici
             if($BDD){
-                $MaRequete = "SELECT eg_description_short FROM escapegame WHERE eg_id=1";
-                $CurseurFilm=$BDD->query($MaRequete);
-                $i = 0;
+                $MaRequete = "SELECT eg_content FROM enigme WHERE eng_id=1";
+                $CurseurEG=$BDD->query($MaRequete);
+                $CurseurEG->fetch();
+                //$i = 0;
                 echo "\"";
-                //$tuple->fetch(); //Peut être que ce n'est pas comme ça qu'on fait une DB
-                $text = "";
-                //echo $tuple['eg_description_short']; //Cette ligne bug
+                //echo $CurseurEG['eg_content'];
+                //$text = "";
+                //echo $CurseurEG['eg_content'];
                 /*while($i<12 - 1){
                     if($tuple['eg_description_short'][$i]=="\\" && $tuple['eg_description_short'][$i+1]=="n" ){
                         echo $text;
