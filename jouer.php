@@ -10,6 +10,7 @@
 ?>
 
 <body>
+
     <div class="background">
         <div class="container-fluid">
             <?php       
@@ -28,7 +29,7 @@
                             <div class="col-auto my-1">
                                 <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                    <option selected disabled>-- Alimentation --</option>
+                                    <option selected disabled>  --- Alimentation ---  </option>
                                     <option value="1">Générateur Principal</option>
                                     <option value="2" >Générateur d'urgence</option>
                                     <option value="3" disabled>Générateur Secondaire</option>
@@ -44,24 +45,14 @@
                 </div>
 
                 <div class="col-md-3 d-flex">
-                    <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 40%"></div>
+
                     </div>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-6 d-flex">
-            <?php
 
-            if($BDD){
-                $MaRequete = "SELECT eg_content FROM enigme WHERE eng_id=1";
-                $CurseurEG=$BDD->query($MaRequete);
-                $CurseurEG->fetch();
-                echo $CurseurEG['eg_content']; 
-            }
-
-            ?>
                 </div>
                 <div class="col-md-3 d-flex">
                 </div>
@@ -74,28 +65,24 @@
             var aText = new Array(
                 <?php //Il est surement pertinent de tout mettre dans une fonction au lieu d'écrire du code en vrac ici
             if($BDD){
-                $MaRequete = "SELECT eg_content FROM enigme WHERE eng_id=1";
-                $CurseurEG=$BDD->query($MaRequete);
-                $CurseurEG->fetch();
-                //$i = 0;
+                $MaRequete = "SELECT eng_content FROM enigme WHERE eng_id=1";
+
                 echo "\"";
-                //echo $CurseurEG['eg_content'];
-                //$text = "";
-                //echo $CurseurEG['eg_content'];
-                /*while($i<12 - 1){
-                    if($tuple['eg_description_short'][$i]=="\\" && $tuple['eg_description_short'][$i+1]=="n" ){
-                        echo $text;
-                        echo "\",\"";
+//Zone de test à supprimer d'ici la publication finale
+                if(isset($_POST['titre']))
+                    echo "test true </br>";
+                else 
+                    echo "test false </br>";
+//Fin de zone de test, vous êtes de retour en sécurité
+                $STH = $BDD -> prepare( $MaRequete );
 
-                    }
-                    else {
-                        $text+=$tuple['eg_description_short'][i];
-                    }
-                    $i++;
-                }
+                $STH -> execute();
 
-                */
-                echo "Ship >> System failed Err42\""; // Ca au moins ça fonctionne, ce qui veut dire que le JS est opérationnel.
+                $result = $STH -> fetch();
+
+                echo $result ["eng_content"];
+
+                echo "\""; 
             }
             ?>
 
@@ -103,6 +90,7 @@
         </script>
         <script src="includes/typewriter.js"></script>
         <script>
+        //initialiseText();
         typewriter();
         </script>
 

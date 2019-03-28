@@ -6,7 +6,8 @@
     var iTextPos = 0; // initialise text position
     var sContents = ''; // initialise contents variable
     var iRow; // initialise current row
-     
+    
+
     function typewriter()
     {
      sContents =  ' ';
