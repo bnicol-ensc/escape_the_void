@@ -10,7 +10,14 @@
 ?>
 
 <body>
+<?php
+// il faut peut être initialiser ailleurs
+$_SESSION['eng_id'] = 1;
 
+
+
+?>
+<?php ?>
     <div class="background">
         <div class="container-fluid">
             <?php       
@@ -65,11 +72,11 @@
             var aText = new Array(
                 <?php //Il est surement pertinent de tout mettre dans une fonction au lieu d'écrire du code en vrac ici
             if($BDD){
-                $MaRequete = "SELECT eng_content FROM enigme WHERE eng_id=1";
-
+                $MaRequete = "SELECT eng_content FROM enigme WHERE eng_id=".$_SESSION['eng_id'];
+//ICI il faut stocker tous les boutons et que je passe la recherche en haut.
                 echo "\"";
 //Zone de test à supprimer d'ici la publication finale
-                if(isset($_POST['titre']))
+                if(isset($_POST['']))
                     echo "test true </br>";
                 else 
                     echo "test false </br>";
