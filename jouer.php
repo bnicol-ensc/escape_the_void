@@ -11,7 +11,6 @@
 
 <body>
 <?php
-// il faut peut être initialiser ailleurs
 $_SESSION['eng_id'] = 1;
 
 
@@ -23,6 +22,23 @@ $_SESSION['eng_id'] = 1;
             <?php       
                     require_once("includes/nav.php");
                     require_once("includes/connect.php");
+
+                    if($BDD){
+                        $MaRequete = "SELECT eng_content FROM enigme WHERE eng_id=".$_SESSION['eng_id'];
+        
+        
+                        $STH = $BDD -> prepare( $MaRequete );
+        
+                        $STH -> execute();
+        
+                        $result = $STH -> fetch();
+
+                        //partie JS : Si un des boutons a été pressé et qu'il gère le javascript, alors l'activer.
+                        for($i = 0 ; $i < 6 ; $i++) {
+                            //if($result['btn'.$_SESSION['eng_id'].'_type']);
+                        }
+
+                    }
             ?>
             <div class="row">
                 <div class="col-md-6 d-flex">
@@ -70,27 +86,12 @@ $_SESSION['eng_id'] = 1;
         <script>
 
             var aText = new Array(
-                <?php //Il est surement pertinent de tout mettre dans une fonction au lieu d'écrire du code en vrac ici
-            if($BDD){
-                $MaRequete = "SELECT eng_content FROM enigme WHERE eng_id=".$_SESSION['eng_id'];
-//ICI il faut stocker tous les boutons et que je passe la recherche en haut.
+            <?php 
                 echo "\"";
-//Zone de test à supprimer d'ici la publication finale
-                if(isset($_POST['']))
-                    echo "test true </br>";
-                else 
-                    echo "test false </br>";
-//Fin de zone de test, vous êtes de retour en sécurité
-                $STH = $BDD -> prepare( $MaRequete );
 
-                $STH -> execute();
-
-                $result = $STH -> fetch();
-
-                echo $result ["eng_content"];
+                echo $result["eng_content"];
 
                 echo "\""; 
-            }
             ?>
 
             );

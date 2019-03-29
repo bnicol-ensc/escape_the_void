@@ -1,6 +1,6 @@
 drop table if exists user_equipe;
 drop table if exists user_mj;
-drop table if exists escapeGame;
+drop table if exists escapegame;
 drop table if exists enigme;
 
 
@@ -34,6 +34,6 @@ create table enigme (
     eng_btn integer not null,
     eng_btn_active boolean,
     eng_btn_hidden boolean,
-    eng_btn_name boolean,
+    eng_btn_name varchar(255) not null,
     FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
