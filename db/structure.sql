@@ -29,14 +29,19 @@ create table user_mj (
 create table enigme (
     eng_id integer not null primary key auto_increment,
     eg_id integer not null,
-    eng_type varchar(255) not null,
     eng_content varchar(2000) not null,
-    eng_btn integer not null,
+    FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id)
+) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+create table bouton (
+    eng_id integer,
+    btn integer not null,
     eng_btn_active boolean,
     eng_btn_hidden boolean,
     eng_btn_name varchar(255) not null,
-    FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id)
-) engine=innodb character set utf8 collate utf8_unicode_ci;
+    PRIMARY KEY (eng_id, btn)
+    FOREIGN KEY (eng_id) REFERENCES enigme(eng_id)
+)engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table enigmeCours (
     engc_id integer not null primary key auto_increment,
