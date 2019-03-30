@@ -13,7 +13,7 @@
 <script type="text/javascript" src="./includes/chat.js"></script>
 <script type="text/javascript">
 
-    // ask user for name with popup prompt    
+    // get user name from session    
     var name = '<?php echo $_SESSION['login'];?>'
 
     // kick off chat

@@ -43,11 +43,6 @@ $_SESSION['eng_id'] = 1;
             ?>
             
             <div class="row">
-                <div class="col-md-6 d-flex">
-                    <div class="console w-100 mh-100 rounded">
-                        <div id="typedtext"></div>
-                    </div>
-                </div>
                 <div class="col-md-3 console-buttons">
                     <form action="action.php" method="post">
                         <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
@@ -64,10 +59,25 @@ $_SESSION['eng_id'] = 1;
                             </div>
                             <label class="switch">
 	                            <input class="switch-input" type="checkbox" />
+	                            <span class="switch-label" data-on="Lumière" data-off="Lumière"></span> 
+                                <span class="switch-handle"></span> 
+                            </label>
+                            <label class="switch">
+	                            <input class="switch-input" type="checkbox" />
 	                            <span class="switch-label" data-on="On" data-off="Off"></span> 
 	                            <span class="switch-handle"></span> 
                             </label>
-                            <button type="button" class="btn btn-console rounded">Lumière</button>
+                            <label class="switch">
+	                            <input class="switch-input" type="checkbox" />
+	                            <span class="switch-label" data-on="On" data-off="Off"></span> 
+	                            <span class="switch-handle"></span> 
+                            </label>
+                            <label class="switch">
+	                            <input class="switch-input" type="checkbox" />
+	                            <span class="switch-label" data-on="On" data-off="Off"></span> 
+	                            <span class="switch-handle"></span> 
+                            </label>
+                            <button type="button" class="btn btn-console rounded m-*-auto">Lumière</button>
                             <button type="button" class="btn btn-console rounded">Navette Secours</button>
                             <button type="button" class="btn btn-console rounded">Diagnostique</button>
                             <button type="button" class="btn btn-console rounded disabled">Réparations</button>
@@ -75,10 +85,14 @@ $_SESSION['eng_id'] = 1;
                     </form>
                     </div>
                 </div>
-
-                <div class="col-md-3 d-flex">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
-                    Ouvrir le chat
+                <div class="col-md-6 d-flex">
+                    <div class="console w-100 mh-100 rounded">
+                        <div id="typedtext"></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
+                    Demander de l'aide
                     </button>
                     <div class="collapse" id="chatbox">
                         <div class="container-fluid row h-100">
@@ -119,9 +133,12 @@ $_SESSION['eng_id'] = 1;
             );
         </script>
         <script src="includes/typewriter.js"></script>
+        <script src="includes/flash.js"></script>
+
         <script>
         //initialiseText();
         typewriter();
+        lightning();
         </script>
 
         <?php require_once("includes/footer.php");?>
