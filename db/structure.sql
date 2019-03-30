@@ -2,7 +2,10 @@ drop table if exists user_equipe;
 drop table if exists user_mj;
 drop table if exists escapegame;
 drop table if exists enigme;
-
+drop table if exists bouton;
+drop table if exists enigmeCours;
+drop table if exists escapeGameCours;
+drop table if exists indice;
 
 create table escapeGame (
     eg_id integer not null primary key auto_increment,

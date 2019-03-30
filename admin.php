@@ -76,21 +76,79 @@
         <?php       
             require_once("includes/nav.php");
             require_once("includes/connect.php");
+
+                if($BDD){
+                    $MaRequete = "Select * From escapegamecours;";
+
+                    $sth = $BDD -> prepare($MaRequete);
+                    $sth -> execute();
+                }
+
+                $result = $sth -> fetchAll();
         ?>
 
         <div class="container-fluid h-100">
 
         <ul class="nav nav-tabs">
+            <?php
+                for($i=0;$i<count($result);$i++){
+                    echo "<li class=\"nav-item\">";
+                    echo "<a class=\"nav-link\" href=\"#p" . ($i+1) . "\" data-toggle=\"tab\">Escape game " . ($i+1) . "</a>";
+                    echo "</li>";
+                }
+            ?>
             <li class="nav-item">
-                <a class="nav-link active" href="#p1" data-toggle="tab">Escape game 1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#p2" data-toggle="tab">Escape game 2</a>
+                <a class="nav-link active" href="#pstat" data-toggle="tab">Statistiques</a>
             </li>
         </ul>
 
 
         <div class="tab-content">
+            <?php
+                for($i=0;$i<count($result);$i++){
+                    if($BDD){
+                        $MaRequete = "Select eg_id, eg_nom, eg_temps_max From escapegame
+                                    Where eg_id =" . $result[$i]['eg_id'] . ";";
+    
+                        $sth = $BDD -> prepare($MaRequete);
+                        $sth -> execute();
+
+                        $result_contenu = $sth -> fetch();
+
+
+                        $MaRequete_equipe = "Select usr_nom From user_equipe
+                        Where usr_id =" . $result[$i]['usr_id'] . ";";
+
+                        $sth_equipe = $BDD -> prepare($MaRequete_equipe);
+                        $sth_equipe -> execute();
+
+                        $result_contenu_equipe = $sth_equipe -> fetch();
+
+
+                        $MaRequete_enigme = "Select usr_nom From user_equipe
+                        Where usr_id =" . $result[$i]['usr_id'] . ";";
+
+                        $sth_enigme = $BDD -> prepare($MaRequete_enigme);
+                        $sth_enigme -> execute();
+
+                        $result_contenu_enigme = $sth_enigme -> fetch();
+                    }
+
+                    echo "<div class=\"tab-pane\" id=\"p" . ($i+1) . "\">";
+
+                    echo "<h2>Description : </h2>";
+                    echo "<p>Nom : " . $result_contenu['eg_nom'] . "</p>";
+                    echo "<p>Temps max : " . ($result_contenu['eg_temps_max']/60) . " minutes</p>";
+                    echo "<p>Equipe participante : " . $result_contenu_equipe['usr_nom'] . "</p>";
+
+                    echo "<h2>Enigmes : </h2>";
+
+
+                    echo "</div>";
+                }
+            ?>
+
+        <!--
             <div class="tab-pane active" id="p1">
 
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
@@ -109,10 +167,10 @@
                     </div>
                 </div>
                 
-            </div>
+            </div>-->
 
-            <div class="tab-pane" id="p2">
-                Panneau 2
+            <div class="tab-pane" id="pstat">
+                Les stats c'est trop génial !
             </div>
 
         </div>
