@@ -173,7 +173,7 @@ Page de Jeux
 	-moz-transition: All 0.3s ease;
 	-o-transition: All 0.3s ease;
 }
-</style>
+
 /*
 ==================================
 Page de Connexion
@@ -323,6 +323,21 @@ Chat
     width: 300px;
     padding: 10px;
     float: right;
+}
+
+
+/*
+==================================
+Admin
+==================================
+*/
+.tab-content {
+    color: white;
+}
+
+.description {
+    margin: 20px;
+    font-size: 1.1em;
 }
 
 
