@@ -39,7 +39,7 @@ create table bouton (
     eng_btn_type varchar(255) not null,
     eng_btn_hidden boolean,
     eng_btn_name varchar(255) not null,
-    PRIMARY KEY (eng_id, btn)
+    PRIMARY KEY (eng_id, btn),
     FOREIGN KEY (eng_id) REFERENCES enigme(eng_id)
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 
