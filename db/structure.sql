@@ -36,7 +36,7 @@ create table enigme (
 create table bouton (
     eng_id integer,
     btn integer not null,
-    eng_btn_active boolean,
+    eng_btn_type varchar(255) not null,
     eng_btn_hidden boolean,
     eng_btn_name varchar(255) not null,
     PRIMARY KEY (eng_id, btn)
