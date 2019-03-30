@@ -27,9 +27,6 @@ $_SESSION['eng_id'] = 1;
                         $STH = $BDD -> prepare( $MaRequete );
         
                         $STH -> execute();
-        
-                        $result = $STH -> fetch();
-
                     }
             ?>
             
@@ -49,15 +46,17 @@ $_SESSION['eng_id'] = 1;
                                 </div>
                             </div>
                             <?php 
-                            for ($i = 0; $i<6 ;$i++) {
-                                echo "<label class=\"switch\">";
-                                //echo $result['btn_hidden']."
-                                echo "<input class=\"switch-input\" type=\"checkbox\" />";
-                                echo "<span class=\"switch-label\" data-on=\"".$result['btn_name']."\" data-off=\"Lumière\"></span> ";
-                                echo "<span class=\"switch-handle\"></span></label>";
-                            }
-                            
+                                while($donnees = $STH->fetch()) {
+                                    if($donnees['btn_hidden']==1) {
+                                        echo "<label class=\"switch disabled\">";
+                                    }
+                                    else echo "<label class=\"switch \">";
+                                    echo "<input class=\"switch-input\" type=\"checkbox\" />";
+                                    echo "<span class=\"switch-label\" data-on=\"".$donnees['btn_name']."\" data-off=\"".$donnees['btn_name']."\"></span> ";
+                                    echo "<span class=\"switch-handle\"></span></label>";
+                                }
                             ?>
+
                             <button type="button" class="btn btn-console rounded">Lumière</button>
                             <button type="button" class="btn btn-console rounded">Navette Secours</button>
                             <button type="button" class="btn btn-console rounded">Diagnostique</button>
@@ -127,64 +126,64 @@ $_SESSION['eng_id'] = 1;
         <?php require_once("includes/footer.php");?>
         <?php require_once("includes/script.php"); ?>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="./includes/chat.js"></script>
-<script type="text/javascript">
+        <script type="text/javascript" src="./includes/chat.js"></script>
+        <script type="text/javascript">
 
-    // get user name from session    
-    var name = '<?php echo $_SESSION['login'];?>'
+            // get user name from session    
+            var name = '<?php echo $_SESSION['login'];?>'
 
-    // kick off chat
-    var chat =  new Chat();
-    $(function() {
-    
-         chat.getState(); 
-         
-         // watch textarea for key presses
-         $("#sendie").keydown(function(event) {  
-         
-             var key = event.which;  
-       
-             //all keys including return.  
-             if (key >= 33) {
-               
-                 var maxLength = $(this).attr("maxlength");  
-                 var length = this.value.length;  
-                 
-                 // don't allow new content if length is maxed out
-                 if (length >= maxLength) {  
-                     event.preventDefault();  
-                 }  
-              }  
-                                                                                                                                                                                                         });
-         // watch textarea for release of key press
-         $('#sendie').keyup(function(e) {	
-                              
-              if (e.keyCode == 13) { 
-              
-                var text = $(this).val();
-                var maxLength = $(this).attr("maxlength");  
-                var length = text.length; 
-                 
-                // send 
-                if (length <= maxLength + 1) { 
-                 
-                    chat.send(text, name);	
-                    $(this).val("");
+            // kick off chat
+            var chat =  new Chat();
+            $(function() {
+            
+                chat.getState(); 
+                
+                // watch textarea for key presses
+                $("#sendie").keydown(function(event) {  
+                
+                    var key = event.which;  
+            
+                    //all keys including return.  
+                    if (key >= 33) {
                     
-                } else {
-                
-                    $(this).val(text.substring(0, maxLength));
+                        var maxLength = $(this).attr("maxlength");  
+                        var length = this.value.length;  
+                        
+                        // don't allow new content if length is maxed out
+                        if (length >= maxLength) {  
+                            event.preventDefault();  
+                        }  
+                    }  
+                                                                                                                                                                                                                });
+                // watch textarea for release of key press
+                $('#sendie').keyup(function(e) {	
+                                    
+                    if (e.keyCode == 13) { 
                     
-                }	
+                        var text = $(this).val();
+                        var maxLength = $(this).attr("maxlength");  
+                        var length = text.length; 
+                        
+                        // send 
+                        if (length <= maxLength + 1) { 
+                        
+                            chat.send(text, name);	
+                            $(this).val("");
+                            
+                        } else {
+                        
+                            $(this).val(text.substring(0, maxLength));
+                            
+                        }	
+                        
+                        
+                    }
+                });
                 
-                
-              }
-         });
-        
-    });
-</script>
+            });
+        </script>
 
-    
+            
 </body>
 
 </html>
