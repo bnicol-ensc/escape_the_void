@@ -37,3 +37,28 @@ create table enigme (
     eng_btn_name varchar(255) not null,
     FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+create table enigmeCours (
+    engc_id integer not null primary key auto_increment,
+    eng_id integer not null,
+    temps integer not null,
+    finie boolean not null,
+    FOREIGN KEY (eng_id) REFERENCES enigme(eng_id)
+) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+create table escapeGameCours (
+    egc_id integer not null primary key auto_increment,
+    eg_id integer not null,
+    usr_id integer not null,
+    engc_id integer not null,
+    FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id),
+    FOREIGN KEY (usr_id) REFERENCES user_equipe(usr_id),
+    FOREIGN KEY (engc_id) REFERENCES enigmeCours(engc_id)
+) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+create table indice (
+    indice_id integer not null primary key auto_increment,
+    indice_text varchar(500) not null,
+    eg_id integer not null,
+    FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id)
+) engine=innodb character set utf8 collate utf8_unicode_ci;

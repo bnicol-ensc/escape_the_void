@@ -61,6 +61,7 @@
                                     }
 
                                     $_SESSION['login'] = $login;
+                                    $_SESSION['admin'] = true;
                                     redirect("index");
                                 } else {
                                     echo "<div class=\"alert alert-danger\" role=\"alert\">

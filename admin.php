@@ -25,7 +25,7 @@
          // watch textarea for key presses
          $("#sendie").keydown(function(event) {  
          
-             var key = event.which;  
+             var key = event.which;
        
              //all keys including return.  
              if (key >= 33) {
