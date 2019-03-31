@@ -31,15 +31,22 @@ $_SESSION['eng_id'] = 1;
                         while($data = $STH->fetch()) {
                             $i+=1;
                             $data_array[] = $data;
-                            if(isset($_POST[data['btn_name']])){
-                                //echo $donnees['btn_content'];
-                                if ($_POST[data['btn_name']]==1) {
-                                    $MaRequete = 'UPDATE btn_active FROM bouton WHERE eng_id='.$_SESSION['eng_id'].' AND btn_id=$i';
-                                    $STH = $BDD -> prepare( $MaRequete );
-                                    $STH -> execute();
+
+                            // Si dessous pour conserver l'activation des boutons après leur activation
+
+                            /* if(isset($_POST[$data['btn_name']])){
+                                if ($_POST[$data['btn_name']]==1) {
+                                    $MaRequete = 'UPDATE bouton SET btn_active = 1  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
+                                    $STH2 = $BDD -> prepare( $MaRequete );
+                                    $STH2 -> execute();
+                                }
+                                else if ($_POST[$data['btn_name']]==0) {
+                                    $MaRequete = 'UPDATE bouton SET btn_active = 0  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
+                                    $STH2 = $BDD -> prepare( $MaRequete );
+                                    $STH2 -> execute();
                                 }
                                 
-                            }
+                            } */
                          }
                         
                     }
@@ -54,7 +61,7 @@ $_SESSION['eng_id'] = 1;
                                 foreach($data_array as $data) {
                                     echo "<label class=\"switch \">";
                                     if(isset($data['btn_active']) && $data['btn_active'] == 1)
-                                        echo "<input class=\"switch-input \" checked  name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
+                                        echo "<input class=\"switch-input\" checked  name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
                                     else echo "<input class=\"switch-input \" name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
 
                                     echo "<span class=\"switch-label\" data-on=\"".$data['btn_name']."\" data-off=\"".$data['btn_name']."\"></span> ";
@@ -62,29 +69,23 @@ $_SESSION['eng_id'] = 1;
                                 }
                             ?>
 
-                            <div class="row">
-                                <div class="col-md-6 console-buttons">
                                     
-                                    <div class="btn-group" role="group">
-                                        <div class="col-auto my-1">
-                                            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                                <option selected disabled>  --- Alimentation ---  </option>
-                                                <option value="1">Générateur Principal</option>
-                                                <option value="2" >Générateur d'urgence</option>
-                                                <option value="3" disabled>Générateur Secondaire</option> 
-                                            </select>
-                                        </div>
-                                    </div>
+                            <div class="btn-group" role="group">
+                                <div class="col-auto my-1">
+                                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                        <option selected disabled>  --- Alimentation ---  </option>
+                                        <option value="1">Générateur Principal</option>
+                                        <option value="2" >Générateur d'urgence</option>
+                                        <option value="3" disabled>Générateur Secondaire</option> 
+                                    </select>
                                 </div>
-                                
-                                <div class="col-md-6 console-buttons">
-
-                                    <button class="btn btn-warning" type="submit">
-                                         Envoyer le courant
-                                    </button>   
-                                </div> 
                             </div>
+                        
+
+                            <button class="btn btn-warning" type="submit">
+                                Envoyer les ordres
+                            </button>   
 
                         </div>
                     </form>
@@ -119,28 +120,20 @@ $_SESSION['eng_id'] = 1;
 
             var aText = new Array(
             <?php 
-                echo "\"";
                 foreach($data_array as $data) {
-                    if($data['btn_type']=='Textual' /* && $_POST[$data['btn_name']]=="1" */){
+                    if($data['btn_type']=='Textual' && isset($_POST[$data['btn_name']])){
+                        echo "\"";
                         echo $data['btn_content'];
-                        echo $_POST;
-                        echo "</br>";
+                        echo "\","; 
                     }
                 }
 
-                echo "\""; 
             ?>
 
             );
         </script>
         <script src="includes/typewriter.js"></script>
-        <script src="includes/flash.js"></script>
-
-        <script>
-        //initialiseText();
-        typewriter();
-        lightning();
-        </script>
+        <script>typewriter();</script>
 
         <?php require_once("includes/footer.php");?>
         <?php require_once("includes/script.php"); ?>
