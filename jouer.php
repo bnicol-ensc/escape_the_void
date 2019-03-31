@@ -27,10 +27,18 @@ $_SESSION['eng_id'] = 1;
                         $STH = $BDD -> prepare( $MaRequete );
         
                         $STH -> execute();
+                        $i = 0;
                         while($data = $STH->fetch()) {
+                            $i+=1;
                             $data_array[] = $data;
-                            if($data['btn_type']=='JS'){
+                            if(isset($_POST[data['btn_name']])){
                                 //echo $donnees['btn_content'];
+                                if ($_POST[data['btn_name']]==1) {
+                                    $MaRequete = 'UPDATE btn_active FROM bouton WHERE eng_id='.$_SESSION['eng_id'].' AND btn_id=$i';
+                                    $STH = $BDD -> prepare( $MaRequete );
+                                    $STH -> execute();
+                                }
+                                
                             }
                          }
                         
@@ -45,7 +53,7 @@ $_SESSION['eng_id'] = 1;
                                 
                                 foreach($data_array as $data) {
                                     echo "<label class=\"switch \">";
-                                    if(isset($data['btn_active']) && $data['btn_active'] = 1)
+                                    if(isset($data['btn_active']) && $data['btn_active'] == 1)
                                         echo "<input class=\"switch-input \" checked  name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
                                     else echo "<input class=\"switch-input \" name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
 
