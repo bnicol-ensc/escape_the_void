@@ -125,7 +125,7 @@
                         $result_contenu_equipe = $sth_equipe -> fetch();
 
 
-                        $MaRequete_enigme = "Select ec.engc_id, e.eng_content, ec.temps, ec.finie  From enigmecours ec, enigme e
+                        $MaRequete_enigme = "Select ec.engc_id, e.eng_content, ec.temps, ec.finie, e.eng_id  From enigmecours ec, enigme e
                         Where ec.engc_id =" . $result[$i]['engc_id'] . "
                         And ec.eng_id = e.eng_id;";
 
@@ -173,8 +173,25 @@
                             echo "Non validée";
                         }
                         echo "</p></td>";
-                        echo "<td><p>" . "<button class=\"btn btn-primary\" type=\"submit\">Donner un indice</button>" . "</p></td>";
-                        echo "</tr>";
+
+                        
+                        if($BDD){
+                            $MaRequete_indice = "Select indice_text From Indice
+                            Where eng_id =" . $result_contenu_enigme[$i]['eng_id'] . ";";
+    
+                            $sth_indice = $BDD -> prepare($MaRequete_indice);
+                            $sth_indice -> execute();
+    
+                            $result_contenu_indice = $sth_indice -> fetchAll();
+                        }   
+
+                        echo "<td>";
+                        for($j=0;$j<count($result_contenu_indice);$j++){
+                            echo "<p><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"" . $result_contenu_indice[$j]['indice_text'] . "\" onclick=\"sendChat(\"" . $_SESSION['login'] . "\",\"" . $_SESSION['login'] . "\")\">";
+                            echo "Donner un indice";
+                            echo "</button></p>";
+                        }
+                        echo "</td></tr>";
                     }
                     echo "</tbody>
                     </table>";
@@ -201,67 +218,6 @@
                     echo "</div>";
                 }
             ?>
-
-        <!--
-            <div class="tab-pane active" id="p1">
-
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
-                    Ouvrir le chat
-                </button>
-                <div class="collapse" id="chatbox">
-                    <div class="container-fluid row h-100">
-                        <div id="page-wrap">
-                            <h2>Chat</h2>
-                            <div id="chat-wrap"><div id="chat-area"></div></div>
-                            <form id="send-message-area">
-                                <p>Saisir votre message : </p>
-                                <textarea id="sendie" maxlength = '100' ></textarea>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            
-            
-            
-            
-            
-            
-            <table class="table table-hover table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-            
-            
-            
-            
-            -->
 
             <div class="tab-pane" id="pstat">
                 Les stats c'est trop génial !

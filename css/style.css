@@ -311,6 +311,7 @@ Chat
 
 #chat-area p {
     padding: 8px 0;
+    color: black;
     border-bottom: 1px solid #ccc;
 }
 
@@ -338,6 +339,14 @@ Admin
 .description {
     margin: 20px;
     font-size: 1.1em;
+}
+
+.nav-item a{
+    color: white;
+}
+
+.nav-item:hover a{
+    color: white;
 }
 
 
