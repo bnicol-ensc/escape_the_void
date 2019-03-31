@@ -125,24 +125,71 @@
                         $result_contenu_equipe = $sth_equipe -> fetch();
 
 
-                        $MaRequete_enigme = "Select usr_nom From user_equipe
-                        Where usr_id =" . $result[$i]['usr_id'] . ";";
+                        $MaRequete_enigme = "Select ec.engc_id, e.eng_content, ec.temps, ec.finie  From enigmecours ec, enigme e
+                        Where ec.engc_id =" . $result[$i]['engc_id'] . "
+                        And ec.eng_id = e.eng_id;";
 
                         $sth_enigme = $BDD -> prepare($MaRequete_enigme);
                         $sth_enigme -> execute();
 
-                        $result_contenu_enigme = $sth_enigme -> fetch();
+                        $result_contenu_enigme = $sth_enigme -> fetchAll();
                     }
 
                     echo "<div class=\"tab-pane\" id=\"p" . ($i+1) . "\">";
 
+                    echo "<div class=\"description\">";
                     echo "<h2>Description : </h2>";
                     echo "<p>Nom : " . $result_contenu['eg_nom'] . "</p>";
                     echo "<p>Temps max : " . ($result_contenu['eg_temps_max']/60) . " minutes</p>";
-                    echo "<p>Equipe participante : " . $result_contenu_equipe['usr_nom'] . "</p>";
+                    echo "<p>Equipe participante : " . $result_contenu_equipe['usr_nom'] . "</p></br>";
 
                     echo "<h2>Enigmes : </h2>";
 
+                    echo "<table class=\"table table-hover table-dark col-6\">
+                    <thead>
+                      <tr>
+                        <th scope=\"col\">#</th>
+                        <th scope=\"col\">Contenu</th>
+                        <th scope=\"col\">Temps</th>
+                        <th scope=\"col\">Finie</th>
+                        <th scope=\"col\">Indice</th>
+                      </tr>
+                    </thead>
+                    <tbody>";
+
+                    for($i=0;$i<count($result_contenu_enigme);$i++){
+                        echo "<tr>";
+                        echo "<td><p>" . ($i+1) . "</p></td>";
+                        echo "<td><p>" . $result_contenu_enigme[$i]['eng_content'] . "</p></td>";
+                        echo "<td><p>" . $result_contenu_enigme[$i]['temps'] . "</p></td>";
+                        echo "<td><p>";
+                        if($result_contenu_enigme[$i]['finie'] == "1"){
+                            echo "Validée";
+                        }else{
+                            echo "Non validée";
+                        }
+                        echo "</p></td>";
+                        echo "<td><p>" . "<button class=\"btn btn-primary\" type=\"submit\">Donner un indice</button>" . "</p></td>";
+                        echo "</tr>";
+                    }
+                    echo "</tbody>
+                    </table>";
+
+                    echo "<div class=\"col-2\"></div>";
+                    /*echo "<div id=\"chatbox\" class=\"col-4\">
+                    <div class=\"container-fluid row h-100\">
+                        <div id=\"page-wrap\">
+                            <h2>Chat</h2>
+                            <div id=\"chat-wrap\"><div id=\"chat-area\"></div></div>
+                            <form id=\"send-message-area\">
+                                <p>Saisir votre message : </p>
+                                <textarea id=\"sendie\" maxlength = '100' ></textarea>
+                            </form>
+                        </div>
+                    </div>
+                </div>";*/
+
+                    echo "</div>";
 
                     echo "</div>";
                 }
@@ -167,7 +214,47 @@
                     </div>
                 </div>
                 
-            </div>-->
+            </div>
+            
+            
+            
+            
+            
+            
+            <table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+            
+            
+            
+            
+            -->
 
             <div class="tab-pane" id="pstat">
                 Les stats c'est trop génial !
