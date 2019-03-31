@@ -137,7 +137,11 @@
 
                     echo "<div class=\"tab-pane\" id=\"p" . ($i+1) . "\">";
 
-                    echo "<div class=\"description\">";
+                    echo "<div class=\"description container-fluid\">";
+
+                    echo "<div class=\"row\">";
+
+                    echo "<div class=\"col-9\">";
                     echo "<h2>Description : </h2>";
                     echo "<p>Nom : " . $result_contenu['eg_nom'] . "</p>";
                     echo "<p>Temps max : " . ($result_contenu['eg_temps_max']/60) . " minutes</p>";
@@ -145,7 +149,7 @@
 
                     echo "<h2>Enigmes : </h2>";
 
-                    echo "<table class=\"table table-hover table-dark col-6\">
+                    echo "<table class=\"table table-hover table-dark col-10\">
                     <thead>
                       <tr>
                         <th scope=\"col\">#</th>
@@ -175,8 +179,8 @@
                     echo "</tbody>
                     </table>";
 
-                    echo "<div class=\"col-2\"></div>";
-                    /*echo "<div id=\"chatbox\" class=\"col-4\">
+                    echo "</div>";
+                    echo "<div id=\"chatbox\" class=\"col-3\">
                     <div class=\"container-fluid row h-100\">
                         <div id=\"page-wrap\">
                             <h2>Chat</h2>
@@ -187,7 +191,10 @@
                             </form>
                         </div>
                     </div>
-                </div>";*/
+                </div>";
+
+                    echo "</div>";
+
 
                     echo "</div>";
 
