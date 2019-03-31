@@ -187,7 +187,7 @@
 
                         echo "<td>";
                         for($j=0;$j<count($result_contenu_indice);$j++){
-                            echo "<p><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"" . $result_contenu_indice[$j]['indice_text'] . "\" onclick=\"sendChat(\"" . $_SESSION['login'] . "\",\"" . $_SESSION['login'] . "\")\">";
+                            echo "<p><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"" . "test" . "\" onclick=\"sendChat(" . $_SESSION['login'] . "," . $_SESSION['login'] . ")\">";
                             echo "Donner un indice";
                             echo "</button></p>";
                         }
