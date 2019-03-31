@@ -45,7 +45,10 @@ $_SESSION['eng_id'] = 1;
                                 
                                 foreach($data_array as $data) {
                                     echo "<label class=\"switch \">";
-                                    echo "<input class=\"switch-input\" name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
+                                    if(isset($data['btn_active']) && $data['btn_active'] = 1)
+                                        echo "<input class=\"switch-input \" checked  name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
+                                    else echo "<input class=\"switch-input \" name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
+
                                     echo "<span class=\"switch-label\" data-on=\"".$data['btn_name']."\" data-off=\"".$data['btn_name']."\"></span> ";
                                     echo "<span class=\"switch-handle\"></span></label>";
                                 }
@@ -102,15 +105,6 @@ $_SESSION['eng_id'] = 1;
                     </div>
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="col-md-6 d-flex">
-
-                </div>
-                <div class="col-md-3 d-flex">
-                </div>
-            </div>
-
         </div>
     </div>
         <script>
@@ -119,9 +113,9 @@ $_SESSION['eng_id'] = 1;
             <?php 
                 echo "\"";
                 foreach($data_array as $data) {
-                    if($data['btn_type']=='Textual' /* && $_Post[$data['btn_name']]==1 */){
+                    if($data['btn_type']=='Textual' /* && $_POST[$data['btn_name']]=="1" */){
                         echo $data['btn_content'];
-                        echo $_Post;
+                        echo $_POST;
                         echo "</br>";
                     }
                 }

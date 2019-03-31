@@ -39,25 +39,28 @@ $_SESSION['eng_id'] = 1;
             <div class="row">
                 <div class="col-md-3 console-buttons">
                     <form action="jouer.1.php" method="POST">
-                        <input class="btn btn-warning" name='alpha' type="checkbox" value="TESTING">
-                                bouton test
-                        </button>  
-                    
+                        <input name='alpha' type="checkbox" value="TESTING">                    
                     
                         <button class="btn btn-warning" type="submit">
                                 Envoyer le courant
                         </button>   
                     </form>
 
+                    <form action="jouer.1.php" method="POST">
+                        Name: <input type="text" name="name"><br>
+                        E-mail: <input type="text" name="email"><br>
+                        <input type="submit">
+                    </form>
+
                 </div>
                 <div class="col-md-3 console-buttons">
                     <?php
-                        if(isset($_Post['alpha'])){
-                            echo $_Post['alpha'];
-                        }
-                        echo "Verif";
-
+                        echo $_POST['alpha'];
+                        echo "Idée </br>";
                     ?>
+                    Welcome <?php echo $_POST["name"]; ?><br>
+                    Your email address is: <?php echo $_POST["email"]; ?>
+
                 </div>
 
 
