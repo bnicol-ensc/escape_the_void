@@ -16,4 +16,8 @@ INSERT INTO `bouton` (`eng_id`, `btn`, `btn_type`, `btn_active`, `btn_expected`,
 VALUES ('1', '1', 'Textual', '1', '0', 'Lumière', 'Dans le centre de commande, tous les écrans se sont éteint. L\'interface d\'urgence est éclairée par une lampe qui clignote par saccades de 4 flashs, grésille, et s\'éteint de temps en temps.'),
 ('1', '2', 'Textual', '0', '0', 'Communication', ' Ship >> Attempting to connect to broadcast material.\r\nShip >> broadcast material has been damaged. Communication are disabled for your safety.'),
 ('1', '3', 'Textual', '0', '1', 'Porte', 'Ship >> Ouverture de la porte...\r\nShip >> Ouverture de la porte impossible, ERR3214 manque de courant'),
-('1', '4', 'Textual', '0', '0', 'Alerte', 'Ship >> Rappel des alertes : Aucune commande général ne répond. Les tank à oxygène ont été touchés. Les statistique de bord vous donnent une espérance de vie de 15min. Ne paniquez pas.');
+('1', '4', 'Textual', '0', '0', 'Alerte', 'Ship >> Rappel des alertes : Aucune commande général ne répond. Les tank à oxygène ont été touchés. Les statistique de bord vous donnent une espérance de vie de 15min. Ne paniquez pas.'),
+('2', '1', 'Textual', '1', '0', 'Porte', 'Ship >> Porte ouverte. Préparez le décollage et fermez la porte.'),
+('2', '2', 'Textual', '0', '0', 'Load', 'SHIP >> l\'Intelligence artificielle du vaisseau a été chargée dans la navette de secours.\r\nShip >> ERR4532 L\'IA du vaisseau est défectueuse. Il est déconseillé de l\'activer'),
+('2', '3', 'Textual', '0', '1', 'AI ', 'SHIP >> ERR5698 IA défectueuse\r\nSHIP : IA >> Bonjour utilisateur... Veuillez décoller au plus vite, votre vie est en danger. Laissez moi vous aider\r\nShip >> OVERRIDE IA : IA défectueuse. mise en quarantine.'),
+('2', '4', 'Textual', '0', '1', 'Démarrer', 'Ship >> Lancement prêt. Attention, l\'utilisation de cette navette de secours doit suivre le protocole exacte du manuel sous peine d\'annulation de garantie.');
