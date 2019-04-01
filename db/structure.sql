@@ -3,9 +3,10 @@ drop table if exists enigmeCours;
 drop table if exists user_equipe;
 drop table if exists user_mj;
 drop table if exists bouton;
+
+drop table if exists indice;
 drop table if exists enigme;
 drop table if exists escapegame;
-drop table if exists indice;
 
 create table escapeGame (
     eg_id integer not null primary key auto_increment,
@@ -19,7 +20,7 @@ create table escapeGame (
 create table user_equipe (
     usr_nom varchar(50) not null,
     usr_login varchar(50) not null primary key,
-    usr_password varchar(255) not null,
+    usr_password varchar(255) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table user_mj (
@@ -61,11 +62,9 @@ create table enigmeCours (
 create table escapeGameCours (
     egc_id integer not null primary key auto_increment,
     eg_id integer not null,
-    equipe varchar(50) not null,
-    engc_id integer not null,
+    eng_cours varchar(50) not null,
     FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id),
-    FOREIGN KEY (equipe) REFERENCES user_equipe(usr_login),
-    FOREIGN KEY (engc_id) REFERENCES enigmeCours(engc_id)
+    FOREIGN KEY (eng_cours) REFERENCES enigmeCours(equipe)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table indice (
