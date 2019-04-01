@@ -34,19 +34,18 @@ $_SESSION['eng_id'] = 1;
 
                             // Si dessous pour conserver l'activation des boutons après leur activation
 
-                            /* if(isset($_POST[$data['btn_name']])){
-                                if ($_POST[$data['btn_name']]==1) {
-                                    $MaRequete = 'UPDATE bouton SET btn_active = 1  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
-                                    $STH2 = $BDD -> prepare( $MaRequete );
-                                    $STH2 -> execute();
-                                }
-                                else if ($_POST[$data['btn_name']]==0) {
-                                    $MaRequete = 'UPDATE bouton SET btn_active = 0  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
-                                    $STH2 = $BDD -> prepare( $MaRequete );
-                                    $STH2 -> execute();
-                                }
+                            if(isset($_POST[$data['btn_name']])){
+                                $MaRequete = 'UPDATE bouton SET btn_active = 1  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
+                                $STH2 = $BDD -> prepare( $MaRequete );
+                                $STH2 -> execute();
+                            }
+                            else  {
+                                $MaRequete = 'UPDATE bouton SET btn_active = 0  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
+                                $STH2 = $BDD -> prepare( $MaRequete );
+                                $STH2 -> execute();
+                            }
                                 
-                            } */
+                            
                          }
                         
                     }
