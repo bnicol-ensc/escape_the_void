@@ -56,7 +56,8 @@ create table enigmeCours (
     temps integer null,
     finie boolean not null,
     PRIMARY KEY (equipe,eng_id),
-    FOREIGN KEY (eng_id) REFERENCES enigme(eng_id)
+    FOREIGN KEY (eng_id) REFERENCES enigme(eng_id),
+    FOREIGN KEY (equipe) REFERENCES user_equipe(usr_login)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table escapeGameCours (
@@ -80,5 +81,7 @@ create table statistiqueEnigme (
     se_id integer not null primary key auto_increment,
     eng_id integer not null,
     temps integer not null,
-    FOREIGN KEY (eng_id) REFERENCES enigme(eng_id)
+    equipe varchar(50) not null,
+    FOREIGN KEY (eng_id) REFERENCES enigme(eng_id),
+    FOREIGN KEY (equipe) REFERENCES user_equipe(usr_login)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
