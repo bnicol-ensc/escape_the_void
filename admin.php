@@ -170,19 +170,19 @@
                     </thead>
                     <tbody>";
 
-                    for($i=0;$i<count($result_contenu_enigme);$i++){
+                    for($j=0;$j<count($result_contenu_enigme);$j++){
                         echo "<tr>";
-                        echo "<td><p>" . ($i+1) . "</p></td>";
-                        echo "<td><p>" . $result_contenu_enigme[$i]['eng_content'] . "</p></td>";
+                        echo "<td><p>" . ($j+1) . "</p></td>";
+                        echo "<td><p>" . $result_contenu_enigme[$j]['eng_content'] . "</p></td>";
                         echo "<td><p>";
-                        if($result_contenu_enigme[$i]['temps'] == null){
+                        if($result_contenu_enigme[$j]['temps'] == null){
                             echo "N/A";
                         }else{
-                            echo $result_contenu_enigme[$i]['temps'];
+                            echo $result_contenu_enigme[$j]['temps'];
                         }
                         echo "</p></td>";
                         echo "<td><p>";
-                        if($result_contenu_enigme[$i]['finie'] == "1"){
+                        if($result_contenu_enigme[$j]['finie'] == "1"){
                             echo "Validée";
                         }else{
                             echo "Non validée";
@@ -192,7 +192,7 @@
                         
                         if($BDD){
                             $MaRequete_indice = "Select indice_text From Indice
-                            Where eng_id =" . $result_contenu_enigme[$i]['eng_id'] . ";";
+                            Where eng_id =" . $result_contenu_enigme[$j]['eng_id'] . ";";
     
                             $sth_indice = $BDD -> prepare($MaRequete_indice);
                             $sth_indice -> execute();
@@ -201,8 +201,8 @@
                         }   
 
                         echo "<td>";
-                        for($j=0;$j<count($result_contenu_indice);$j++){
-                            print "<p><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"" . $result_contenu_indice[$j]['indice_text'] . "\" onClick=\"sendChat('" . addslashes($result_contenu_indice[$j]['indice_text']) . "','" . $_SESSION['login'] . "')\">";
+                        for($k=0;$k<count($result_contenu_indice);$k++){
+                            print "<p><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"" . $result_contenu_indice[$k]['indice_text'] . "\" onClick=\"sendChat('" . addslashes($result_contenu_indice[$k]['indice_text']) . "','" . $_SESSION['login'] . "')\">";
                             echo "Donner un indice";
                             echo "</button></p>";
                         }
@@ -253,13 +253,16 @@
                             <div class="card-body">
 
                                 <?php
-                                $somme = 0;
-                                    for($it=0;$it<count($result_contenu_stats);$it++){
-                                        $somme += $result_contenu_stats[$it]['temps'];
+                                    if(count($result_contenu_stats) != 0){
+                                        $somme = 0;
+                                        for($it=0;$it<count($result_contenu_stats);$it++){
+                                            $somme += $result_contenu_stats[$it]['temps'];
+                                        }
+                                        $moyenne = $somme / count($result_contenu_stats);
+                                        echo "<p>Moyenne totale des énigmes : " . $moyenne . " secondes.</p>";
+                                    }else{
+                                        echo "<p>Aucune donnée n'est stockée, les statistiques ne sont donc pas disponibles.</p>";
                                     }
-                                    $moyenne = $somme / count($result_contenu_stats);
-                                    echo "<p>Moyenne totale des énigmes : " . $moyenne . " secondes.</p>";
-
                                 ?>
 
                             </div>
@@ -267,7 +270,13 @@
                         <div class="card text-white bg-dark col-3">
                         <div class="card-header"><h4>Temps moyen par équipe</h4></div>
                             <div class="card-body">
-                                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <?php
+                                    if(count($result_contenu_stats) != 0){
+                                        echo "<p>Work in progress...</p>";
+                                    }else{
+                                        echo "<p>Aucune donnée n'est stockée, les statistiques ne sont donc pas disponibles.</p>";
+                                    }
+                                ?>
                             </div>
                         </div>
                         <div class="card text-white bg-dark col-3">
