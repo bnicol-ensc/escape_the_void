@@ -76,7 +76,7 @@
         <?php       
             require_once("includes/nav.php");
             require_once("includes/connect.php");
-
+        
                 if($BDD){
                     $MaRequete = "Select * From escapegamecours;";
 
@@ -88,6 +88,10 @@
         ?>
 
         <div class="container-fluid h-100">
+
+<?php if(isset($_SESSION['admin'])){ ?>
+
+
 
         <ul class="nav nav-tabs">
             <?php
@@ -117,7 +121,7 @@
 
 
                         $MaRequete_equipe = "Select usr_nom From user_equipe
-                        Where usr_id =" . $result[$i]['usr_id'] . ";";
+                        Where usr_login ='" . $result[$i]['eng_cours'] . "';";
 
                         $sth_equipe = $BDD -> prepare($MaRequete_equipe);
                         $sth_equipe -> execute();
@@ -125,8 +129,8 @@
                         $result_contenu_equipe = $sth_equipe -> fetch();
 
 
-                        $MaRequete_enigme = "Select ec.engc_id, e.eng_content, ec.temps, ec.finie, e.eng_id  From enigmecours ec, enigme e
-                        Where ec.engc_id =" . $result[$i]['engc_id'] . "
+                        $MaRequete_enigme = "Select e.eng_content, ec.temps, ec.finie, e.eng_id  From enigmecours ec, enigme e
+                        Where ec.equipe ='" . $result[$i]['eng_cours'] . "'
                         And ec.eng_id = e.eng_id;";
 
                         $sth_enigme = $BDD -> prepare($MaRequete_enigme);
@@ -225,10 +229,16 @@
                 </div>
             </div>
 
-        </div>
+            <?php }else{
+                echo "<div class=\"alert alert-danger\" role=\"alert\">
+                Accès interdit si vous n'êtes pas MJ !
+                </div>";
+            } ?>
 
-</div>
-        <?php require_once("includes/footer.php");?>
+        </div>
+    </div>
+
+        <?php require_once("includes/footer.php"); ?>
         <?php require_once("includes/script.php"); ?>
 
     </div>
