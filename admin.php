@@ -146,12 +146,17 @@
                     echo "<div class=\"row\">";
 
                     echo "<div class=\"col-9\">";
-                    echo "<h2>Description : </h2>";
+
+                    echo "<div class=\"card bg-dark col-6\">";
+                    echo "<div class=\"card-header\"><h2>Description : </h2></div>";
+                    echo "<div class=\"card-body\">";
                     echo "<p>Nom : " . $result_contenu['eg_nom'] . "</p>";
                     echo "<p>Temps max : " . ($result_contenu['eg_temps_max']/60) . " minutes</p>";
-                    echo "<p>Equipe participante : " . $result_contenu_equipe['usr_nom'] . "</p></br>";
+                    echo "<p>Equipe participante : " . $result_contenu_equipe['usr_nom'] . "</p>";
+                    echo "</div>";
+                    echo "</div>";
 
-                    echo "<h2>Enigmes : </h2>";
+                    echo "</br><h2>Enigmes : </h2>";
 
                     echo "<table class=\"table table-hover table-dark col-10\">
                     <thead>
@@ -169,7 +174,13 @@
                         echo "<tr>";
                         echo "<td><p>" . ($i+1) . "</p></td>";
                         echo "<td><p>" . $result_contenu_enigme[$i]['eng_content'] . "</p></td>";
-                        echo "<td><p>" . $result_contenu_enigme[$i]['temps'] . "</p></td>";
+                        echo "<td><p>";
+                        if($result_contenu_enigme[$i]['temps'] == null){
+                            echo "N/A";
+                        }else{
+                            echo $result_contenu_enigme[$i]['temps'];
+                        }
+                        echo "</p></td>";
                         echo "<td><p>";
                         if($result_contenu_enigme[$i]['finie'] == "1"){
                             echo "Validée";
@@ -224,8 +235,50 @@
             ?>
 
             <div class="tab-pane" id="pstat">
+            <?php
+                if($BDD){
+                    $MaRequete_stats = "Select * From statistiqueenigme;";
+
+                    $sth_stats = $BDD -> prepare($MaRequete_stats);
+                    $sth_stats -> execute();
+
+                    $result_contenu_stats = $sth_stats -> fetchAll();
+                }
+            ?>
                 <div class="description container-fluid">
                     <h2>Statistiques :</h2>
+                    <div class="row">
+                        <div class="card text-white bg-dark col-3">
+                            <div class="card-header"><h4>Temps moyen par énigmes</h4></div>
+                            <div class="card-body">
+
+                                <?php
+                                $somme = 0;
+                                    for($it=0;$it<count($result_contenu_stats);$it++){
+                                        $somme += $result_contenu_stats[$it]['temps'];
+                                    }
+                                    $moyenne = $somme / count($result_contenu_stats);
+                                    echo "<p>Moyenne totale des énigmes : " . $moyenne . " secondes.</p>";
+
+                                ?>
+
+                            </div>
+                        </div>
+                        <div class="card text-white bg-dark col-3">
+                        <div class="card-header"><h4>Temps moyen par équipe</h4></div>
+                            <div class="card-body">
+                                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                        <div class="card text-white bg-dark col-3">
+                        <div class="card-header"><h4>Autres statistiques ... </h4></div>
+                            <div class="card-body">
+                                <p>1 - Some stat</p>
+                                <p>2 - Antoher stat</p>
+                                <p>3 - ...</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

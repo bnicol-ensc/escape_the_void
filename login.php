@@ -15,13 +15,11 @@
     <?php
         require_once("includes/nav.php");
         require_once("includes/connect.php");
-
-        
-
     ?>
 
     <div class="container_login_register">
         <div class="d-flex justify-content-center h-100">
+        <?php if(!isset($_SESSION['login'])){ ?>
             <div class="card_login">
                 <div class="card-header">
                     <h3>Connexion</h3>
@@ -94,8 +92,15 @@
                         <a href="#">Mot de passe oublié ?</a>
                     </div>
                 </div>
+                
             </div>
+            <?php }else{
+                            echo "<div class=\"alert alert-danger\" role=\"alert\">
+                            Vous êtes déjà connecté ! Pour vous connecter sur un autre compte, déconnectez vous d'abord.
+                            </div>";
+                        } ?>
         </div>
+        
     </div>
 
     <?php

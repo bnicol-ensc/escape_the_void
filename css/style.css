@@ -349,6 +349,13 @@ Admin
     color: white;
 }
 
+#pstat .card {
+    margin: 0px 10px 0px 10px;
+}
+
+#pstat h4 {
+    text-align: center;
+}
 
 /*
 ==================================
