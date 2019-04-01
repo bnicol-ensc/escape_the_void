@@ -8,11 +8,11 @@
 <?php
     require_once("includes/head.php");
 ?>
-
-<body>
 <?php
-$_SESSION['eng_id'] = 1;
+if(!isset($_SESSION['eng_id']))
+    $_SESSION['eng_id'] = 1;
 ?>
+<body>
      <div class="background">
         <div class="container-fluid">
             <?php       
@@ -28,9 +28,12 @@ $_SESSION['eng_id'] = 1;
         
                         $STH -> execute();
                         $i = 0;
+                        $val = TRUE;
                         while($data = $STH->fetch()) {
+                            if($data['btn_expected'] != $data['btn_active']){
+                                $val = FALSE;
+                            }
                             $i+=1;
-                            $data_array[] = $data;
 
                             // Si dessous pour conserver l'activation des boutons après leur activation
 
@@ -38,18 +41,26 @@ $_SESSION['eng_id'] = 1;
                                 $MaRequete = 'UPDATE bouton SET btn_active = 1  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
                                 $STH2 = $BDD -> prepare( $MaRequete );
                                 $STH2 -> execute();
+                                $data['btn_active'] = 1;
                             }
                             else  {
                                 $MaRequete = 'UPDATE bouton SET btn_active = 0  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
                                 $STH2 = $BDD -> prepare( $MaRequete );
                                 $STH2 -> execute();
+                                $data['btn_active'] = 0;
+
                             }
-                                
+                            $data_array[] = $data;
+
                             
                          }
+                         if($val == TRUE) {
+                            $_SESSION['eng_id'] += 1;
+                        }
                         
                     }
             ?>
+    ?>
             
             <div class="row">
                 <div class="col-md-3 console-buttons">
@@ -115,6 +126,7 @@ $_SESSION['eng_id'] = 1;
             </div>
         </div>
     </div>
+
         <script>
 
             var aText = new Array(
