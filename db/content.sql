@@ -13,11 +13,11 @@ VALUES (NULL, '1', 'Où l\'astronaute doit ouvrir la porte pour prendre la navet
 ('2', '1', 'Maintenant que la porte est ouverte, il faut réussir à lancer la navette, loin du vaisseau sur le point d\'exploser');
 
 INSERT INTO `bouton` (`eng_id`, `btn`, `btn_type`, `btn_active`, `btn_expected`, `btn_name`, `btn_content`)
-VALUES ('1', '1', 'Textual', '1', '0', 'Lumière', 'Dans le centre de commande, tous les écrans se sont éteint. L\'interface d\'urgence est éclairée par une lampe qui clignote par saccades de 4 flashs, grésille, et s\'éteint de temps en temps.'),
-('1', '2', 'Textual', '0', '0', 'Communication', ' Vaisseau >> Initialisation du materiel de communication</br>Vaisseau >> Le materiel de communication est endommagé. Nous vous rappelons que le materiel est la responsabilité de l'équipage.'),
-('1', '3', 'Textual', '0', '1', 'Porte', 'Vaisseau >> Ouverture de la porte...</br>Vaisseau >> Ouverture de la porte impossible, ERR3214 manque de courant'),
+VALUES ('1', '1', 'Textual', '1', '0', 'Lumière', "Dans le centre de commande, tous les écrans se sont éteint. L\'interface d\'urgence est éclairée par une lampe qui clignote par saccades de 4 flashs, grésille, et s\'éteint de temps en temps."),
 ('1', '4', 'Textual', '0', '0', 'Alerte', 'Vaisseau >> Rappel des alertes : Aucune commande général ne répond. Les tank à oxygène ont été touchés. Les statistique de bord vous donnent une espérance de vie de 15min. Ne paniquez pas.'),
 ('2', '1', 'Textual', '1', '0', 'Porte', 'Vaisseau >> Porte ouverte. Préparez le décollage et fermez la porte.'),
 ('2', '2', 'Textual', '0', '0', 'Load', 'Vaisseau >> l\'Intelligence artificielle du vaisseau a été chargée dans la navette de secours.</br>Vaisseau >> ERR4532 L\'IA du vaisseau est défectueuse. Il est déconseillé de l\'activer'),
 ('2', '3', 'Textual', '0', '1', 'AI ', 'Vaisseau >> ERR5698 IA défectueuse</br>Vaisseau : IA >> Bonjour utilisateur... Veuillez décoller au plus vite, votre vie est en danger. Laissez moi vous aider</br>Vaisseau >> OVERRIDE IA : IA défectueuse. mise en quarantine.'),
-('2', '4', 'Textual', '0', '1', 'Démarrer', 'Vaisseau >> Lancement prêt. Attention, l\'utilisation de cette navette de secours doit suivre le protocole exacte du manuel sous peine d\'annulation de garantie.');
+('2', '4', 'Textual', '0', '1', 'Démarrer', 'Vaisseau >> Lancement prêt. Attention, l\'utilisation de cette navette de secours doit suivre le protocole exacte du manuel sous peine d\'annulation de garantie.'),
+('1', '2', 'Textual', '0', '1', 'Alerte', 'Vaisseau >> Vos Alertes sont : Risque de mort 79%. Vaisseau endommagé. Réservoir d\'oxygène défectueux. Ne paniquez pas, car un équipage paniqué a 99.99% de chances de mourir dans les 15 premières minutes.</br>Vaisseau >> Le mode alerte passe tout le vaisseau en mode déverrouillage manuel. Pour votre sécurité, veuillez le désactiver.'),
+('1', '3', 'Textual', '0', '1', 'Porte', 'Vaisseau >> ERR4598 les portes sont verrouillées. Le système de verrouillage est bloqué pendant la durée de la situation dangereuse pour votre sécurité.');

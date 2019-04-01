@@ -72,7 +72,7 @@ if(!isset($_SESSION['eg_id'])) {
                          if($val == TRUE) {
                             $_SESSION['eng_id'] += 1;
                             $time_temp = (date("s") + date("m")*60+date("h")*3600);
-                            $MaRequete = "UPDATE enigmecours SET finie = 1, temps =".($time_temp - $_SESSION['eng_time'])."  WHERE eng_cours='".$_SESSION['login']."'";
+                            $MaRequete = "UPDATE enigmecours SET finie = 1, temps =".($time_temp - $_SESSION['eng_time'])."  WHERE equipe='".$_SESSION['login']."'";
                                 $STH2 = $BDD -> prepare( $MaRequete );
                                 $STH2 -> execute();
                             $_SESSION['eng_time'] = $time_temp;
@@ -127,28 +127,29 @@ if(!isset($_SESSION['eg_id'])) {
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
-                    Demander de l'aide
-                    </button>
-                    <div class="collapse" id="chatbox">
-                        <div class="container-fluid row h-100">
-                            <div id="page-wrap">
-                                <h2>Chat</h2>
-                                <div id="chat-wrap"><div id="chat-area"></div></div>
-                                <form id="send-message-area">
-                                    <p>Saisir votre message : </p>
-                                    <textarea id="sendie" maxlength = '100' ></textarea>
-                                </form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
+                            Demander de l'aide
+                            </button>
+                            <div class="collapse" id="chatbox">
+                                <div class="container-fluid row h-100">
+                                    <div id="page-wrap">
+                                        <h2>Chat</h2>
+                                        <div id="chat-wrap"><div id="chat-area"></div></div>
+                                        <form id="send-message-area">
+                                            <p>Saisir votre message : </p>
+                                            <textarea id="sendie" maxlength = '100' ></textarea>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                        <a class="btn btn-secondary" href="terminer_partie.php" role="button">Abandonner</a>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="row">
-            <?php
-                echo "The time is " . (date("s") + date("m")*60+date("h")*3600);
-            ?>
             </div>
         </div>
     </div>
