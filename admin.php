@@ -220,7 +220,9 @@
             ?>
 
             <div class="tab-pane" id="pstat">
-                Les stats c'est trop génial !
+                <div class="description container-fluid">
+                    <h2>Statistiques :</h2>
+                </div>
             </div>
 
         </div>

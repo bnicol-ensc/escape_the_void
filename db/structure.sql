@@ -20,13 +20,15 @@ create table user_equipe (
     usr_id integer not null primary key auto_increment,
     usr_nom varchar(50) not null,
     usr_login varchar(50) not null,
-    usr_password varchar(255) not null
+    usr_password varchar(255) not null,
+    UNIQUE(usr_login)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table user_mj (
     usr_id integer not null primary key auto_increment,
     usr_login varchar(50) not null,
-    usr_password varchar(255) not null
+    usr_password varchar(255) not null,
+    UNIQUE(usr_login)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table enigme (
@@ -49,11 +51,11 @@ create table bouton (
 )engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table enigmeCours (
-    engc_id integer not null,
+    equipe varchar(50) not null,
     eng_id integer not null,
-    temps integer not null,
+    temps integer null,
     finie boolean not null,
-    PRIMARY KEY (engc_id,eng_id),
+    PRIMARY KEY (equipe,eng_id),
     FOREIGN KEY (eng_id) REFERENCES enigme(eng_id)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
@@ -71,5 +73,12 @@ create table indice (
     indice_id integer not null primary key auto_increment,
     indice_text varchar(500) not null,
     eng_id integer not null,
+    FOREIGN KEY (eng_id) REFERENCES enigme(eng_id)
+) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+create table statistiqueEnigme (
+    se_id integer not null primary key auto_increment,
+    eng_id integer not null,
+    temps integer not null,
     FOREIGN KEY (eng_id) REFERENCES enigme(eng_id)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
