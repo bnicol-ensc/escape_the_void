@@ -10,9 +10,6 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item">
-          <?php if(isset($_SESSION['login'])) echo "<a class='nav-item nav-link' href='movie_add.php'>Rejoindre partie</a>";?>
-        </li>
       </ul>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

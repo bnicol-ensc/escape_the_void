@@ -1,4 +1,4 @@
-    var iSpeed = 50; // time delay of print out
+    var iSpeed = 30; // time delay of print out
     var iIndex = 0; // start printing array at this posision
     var iArrLength = aText[0].length; // the length of the text array
     var iScrollAt = 20; // start scrolling up at this many lines
@@ -23,7 +23,7 @@
       iIndex++;
       if ( iIndex != aText.length ) {
        iArrLength = aText[iIndex].length;
-       setTimeout("typewriter()", 500);
+       setTimeout("typewriter()", 600);
       }
      } else {
       setTimeout("typewriter()", iSpeed);

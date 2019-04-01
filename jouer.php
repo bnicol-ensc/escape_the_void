@@ -6,10 +6,26 @@
 <html>
 
 <?php require_once("includes/head.php");
+require_once("includes/connect.php");
 
-if(!isset($_SESSION['eng_id']))
+if(!isset($_SESSION['eng_id'])) {
+
     $_SESSION['eng_id'] = 1;
+    $_SESSION['eng_time'] = (date("s") + date("m")*60+date("h")*3600);
 
+    
+    $MaRequete = "INSERT INTO `enigmecours` (`equipe`,`eng_id`, `finie`) VALUES ('".$_SESSION['login']."', '1', '0')";
+    $STH2 = $BDD -> prepare( $MaRequete );
+    $STH2 -> execute();
+}
+if(!isset($_SESSION['eg_id'])) {
+    $_SESSION['eg_id'] = $_GET['id'];
+
+    
+    $MaRequete = "INSERT INTO `escapegamecours` (`eg_id`,`eng_cours`) VALUES (".$_SESSION['eg_id'].", '".$_SESSION['login']."')";
+    $STH2 = $BDD -> prepare( $MaRequete );
+    $STH2 -> execute();
+}
 
 ?>
 <body onload="setInterval('chat.update()', 1000)">
@@ -17,11 +33,10 @@ if(!isset($_SESSION['eng_id']))
      <?php require_once("includes/nav.php");?>
         <div class="container-fluid">
             <?php       
-                    require_once("includes/connect.php");
                     
 
                     if($BDD){
-                        $MaRequete = "SELECT * FROM bouton WHERE eng_id=".$_SESSION['eng_id'];
+                        $MaRequete = "SELECT * FROM bouton WHERE eng_id=".$_SESSION['eng_id']." ORDER BY btn";
         
         
                         $STH = $BDD -> prepare( $MaRequete );
@@ -56,6 +71,11 @@ if(!isset($_SESSION['eng_id']))
                          }
                          if($val == TRUE) {
                             $_SESSION['eng_id'] += 1;
+                            $time_temp = (date("s") + date("m")*60+date("h")*3600);
+                            $MaRequete = "UPDATE enigmecours SET finie = 1, temps =".($time_temp - $_SESSION['eng_time'])."  WHERE eng_cours='".$_SESSION['login']."'";
+                                $STH2 = $BDD -> prepare( $MaRequete );
+                                $STH2 -> execute();
+                            $_SESSION['eng_time'] = $time_temp;
                         }
                         
                     }
@@ -123,6 +143,12 @@ if(!isset($_SESSION['eng_id']))
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="row">
+            <?php
+                echo "The time is " . (date("s") + date("m")*60+date("h")*3600);
+            ?>
             </div>
         </div>
     </div>
