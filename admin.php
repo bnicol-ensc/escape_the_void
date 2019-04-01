@@ -260,6 +260,11 @@
                                         }
                                         $moyenne = $somme / count($result_contenu_stats);
                                         echo "<p>Moyenne totale des énigmes : " . $moyenne . " secondes.</p>";
+
+
+
+
+                                        
                                     }else{
                                         echo "<p>Aucune donnée n'est stockée, les statistiques ne sont donc pas disponibles.</p>";
                                     }
