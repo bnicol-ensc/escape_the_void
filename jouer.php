@@ -5,18 +5,18 @@
 <!doctype html>
 <html>
 
-<?php
-    require_once("includes/head.php");
-?>
-<?php
+<?php require_once("includes/head.php");
+
 if(!isset($_SESSION['eng_id']))
     $_SESSION['eng_id'] = 1;
+
+
 ?>
 <body>
      <div class="background">
+     <?php require_once("includes/nav.php");?>
         <div class="container-fluid">
             <?php       
-                    require_once("includes/nav.php");
                     require_once("includes/connect.php");
                     
 
