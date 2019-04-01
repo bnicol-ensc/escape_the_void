@@ -17,11 +17,9 @@ create table escapeGame (
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table user_equipe (
-    usr_id integer not null primary key auto_increment,
     usr_nom varchar(50) not null,
-    usr_login varchar(50) not null,
+    usr_login varchar(50) not null primary key,
     usr_password varchar(255) not null,
-    UNIQUE(usr_login)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
 create table user_mj (
@@ -63,10 +61,10 @@ create table enigmeCours (
 create table escapeGameCours (
     egc_id integer not null primary key auto_increment,
     eg_id integer not null,
-    usr_id integer not null,
+    equipe varchar(50) not null,
     engc_id integer not null,
     FOREIGN KEY (eg_id) REFERENCES escapeGame(eg_id),
-    FOREIGN KEY (usr_id) REFERENCES user_equipe(usr_id),
+    FOREIGN KEY (equipe) REFERENCES user_equipe(usr_login),
     FOREIGN KEY (engc_id) REFERENCES enigmeCours(engc_id)
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
