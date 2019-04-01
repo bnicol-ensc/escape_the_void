@@ -12,7 +12,7 @@ if(!isset($_SESSION['eng_id']))
 
 
 ?>
-<body>
+<body onload="setInterval('chat.update()', 1000)">
      <div class="background">
      <?php require_once("includes/nav.php");?>
         <div class="container-fluid">

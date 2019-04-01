@@ -187,7 +187,7 @@
 
                         echo "<td>";
                         for($j=0;$j<count($result_contenu_indice);$j++){
-                            echo "<p><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"" . "test" . "\" onclick=\"sendChat(" . $_SESSION['login'] . "," . $_SESSION['login'] . ")\">";
+                            print "<p><button type=\"button\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"right\" title=\"" . $result_contenu_indice[$j]['indice_text'] . "\" onClick=\"sendChat('" . addslashes($result_contenu_indice[$j]['indice_text']) . "','" . $_SESSION['login'] . "')\">";
                             echo "Donner un indice";
                             echo "</button></p>";
                         }
@@ -204,7 +204,7 @@
                             <div id=\"chat-wrap\"><div id=\"chat-area\"></div></div>
                             <form id=\"send-message-area\">
                                 <p>Saisir votre message : </p>
-                                <textarea id=\"sendie\" maxlength = '100' ></textarea>
+                                <textarea id=\"sendie\" maxlength = '1000' ></textarea>
                             </form>
                         </div>
                     </div>
