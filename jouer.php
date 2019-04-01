@@ -45,11 +45,7 @@ if(!isset($_SESSION['eg_id'])) {
                         $i = 0;
                         $val = TRUE;
                         while($data = $STH->fetch()) {
-                            if($data['btn_expected'] != $data['btn_active']){
-                                $val = FALSE;
-                            }
                             $i+=1;
-
                             // Si dessous pour conserver l'activation des boutons après leur activation
 
                             if(isset($_POST[$data['btn_name']])){
@@ -57,32 +53,38 @@ if(!isset($_SESSION['eg_id'])) {
                                 $STH2 = $BDD -> prepare( $MaRequete );
                                 $STH2 -> execute();
                                 $data['btn_active'] = 1;
+
+
                             }
                             else  {
                                 $MaRequete = 'UPDATE bouton SET btn_active = 0  WHERE eng_id='.$_SESSION['eng_id'].' AND btn='.$i;
                                 $STH2 = $BDD -> prepare( $MaRequete );
                                 $STH2 -> execute();
                                 $data['btn_active'] = 0;
-
+                            }
+                            if($data['btn_expected'] != $data['btn_active']){
+                                $val = FALSE;
                             }
                             $data_array[] = $data;
 
+
                             
-                         }
-                         if($val == TRUE) {
+                        }
+                         if($val == TRUE && $i != 0) {
                             $_SESSION['eng_id'] += 1;
                             $time_temp = (date("s") + date("m")*60+date("h")*3600);
                             $MaRequete = "UPDATE enigmecours SET finie = 1, temps =".($time_temp - $_SESSION['eng_time'])."  WHERE equipe='".$_SESSION['login']."'";
                                 $STH2 = $BDD -> prepare( $MaRequete );
                                 $STH2 -> execute();
                             $_SESSION['eng_time'] = $time_temp;
+                            header('Location:jouer.php');
                         }
                         
                     }
             ?>
-    ?>
+
             
-            <div class="row">
+            <div class="row  align-content-center">
                 <div class="col-md-3 console-buttons">
                     <form action="jouer.php" method="post">
                         <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
@@ -130,7 +132,7 @@ if(!isset($_SESSION['eg_id'])) {
                     <div class="row">
                         <div class="col-md-6">
                             <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
-                            Demander de l'aide
+                            Demande d'aide
                             </button>
                             <div class="collapse" id="chatbox">
                                 <div class="container-fluid row h-100">
