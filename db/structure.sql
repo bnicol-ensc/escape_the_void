@@ -42,7 +42,7 @@ create table bouton (
     btn integer not null,
     btn_type varchar(255) not null,
     btn_active boolean,
-    btn_expected boolean,
+    btn_expected integer,
     btn_name varchar(255) not null,
     btn_content varchar(2000),
     PRIMARY KEY (eng_id, btn),

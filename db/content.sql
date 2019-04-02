@@ -10,7 +10,9 @@ VALUES  (NULL, 'Escape the Void', 'For a routine mission, today sucks. The ship\
         (NULL, 'Ada\'s Father' , 'WIP - In development', 'This escape game is suitable for any player, including those without prior experience with virtual escape games.</br></br></br>Orange and Pink shoot across the sky,</br>I can see it from where I lie,</br>The sun is setting, going to sleep,</br>The dark surrounds, like the ocean deep,</br></br>The stars come, twinkling lights,</br>Glittering diamonds, What a sight,</br>I lie in the grass and up I stare,</br>My body goes numb as I forget all my cares</br></br>I like to gaze up at the stars,</br>So I can forget my cares and all my scars,</br></br>I have no one to look after me,</br>The real me is someone no one can see,</br>So I\'ll wait until I find some sort of love,</br>And until then it\'s just me and the stars above.</br>', '600', 'stmpnk.jpg');
 INSERT INTO `enigme` (`eng_id`, `eg_id`, `eng_content`) 
 VALUES (NULL, '1', 'Où l\'astronaute doit ouvrir la porte pour prendre la navette de secours.'),
-('2', '1', 'Maintenant que la porte est ouverte, il faut réussir à lancer la navette, loin du vaisseau sur le point d\'exploser');
+('2', '1', 'Maintenant que la porte est ouverte, il faut réussir à lancer la navette, loin du vaisseau sur le point d\'exploser'),
+(NULL, '1', 'Une fois paré à le décollage maitrisé, il faut maintenant éviter l\'autodestruction. '),
+(NULL, '1', 'Ceci est l\'écran de fin, qui explique au joueur comment il a gagné, et lui écrit la fin de l\'histoire.');
 
 INSERT INTO `bouton` (`eng_id`, `btn`, `btn_type`, `btn_active`, `btn_expected`, `btn_name`, `btn_content`)
 VALUES ('1', '1', 'Textual', '1', '0', 'Lumière', "Dans le centre de commande, tous les écrans se sont éteint. L\'interface d\'urgence est éclairée par une lampe qui clignote par saccades de 4 flashs, grésille, et s\'éteint de temps en temps."),
@@ -21,4 +23,16 @@ VALUES ('1', '1', 'Textual', '1', '0', 'Lumière', "Dans le centre de commande, 
 ('2', '4', 'Textual', '0', '1', 'Démarrer', 'Vaisseau >> Lancement prêt. Attention, l\'utilisation de cette navette de secours doit suivre le protocole exacte du manuel sous peine d\'annulation de garantie.'),
 ('1', '2', 'Textual', '0', '1', 'Alerte', 'Vaisseau >> Vos Alertes sont : Risque de mort 79%. Vaisseau endommagé. Réservoir d\'oxygène défectueux. Ne paniquez pas, car un équipage paniqué a 99.99% de chances de mourir dans les 15 premières minutes.</br>Vaisseau >> Le mode alerte passe tout le vaisseau en mode déverrouillage manuel. Pour votre sécurité, veuillez le désactiver.'),
 ('1', '3', 'Textual', '0', '1', 'Porte', 'Vaisseau >> ERR4598 les portes sont verrouillées. Le système de verrouillage est bloqué pendant la durée de la situation dangereuse pour votre sécurité.'),
-('2', '3', 'Textual', '0', '1', 'IA', 'Vaisseau >> ** Danger ** Cette fonction est déconseillée en mode sécurisé **Danger**</br>IA >> Bonjour.</br>IA >> J\'ai analysé la situation. Je vais déverrouiller la séquence de lancement pendant que vous démarrez. Laissez moi le temps de donner des ordres au vaissea**STOP**</br>Vaisseau >> OVERRIDE tentative d\'intrusion détectée. Destruction de l\'agent étranger en cours[10%] ');
+('2', '3', 'Textual', '0', '1', 'IA', 'Vaisseau >> ** Danger ** Cette fonction est déconseillée en mode sécurisé **Danger**</br>IA >> Bonjour.</br>IA >> J\'ai analysé la situation. Je vais déverrouiller la séquence de lancement pendant que vous démarrez. Laissez moi le temps de donner des ordres au vaissea**STOP**</br>Vaisseau >> OVERRIDE tentative d\'intrusion détectée. Destruction de l\'agent étranger en cours[10%] '),
+('4', '1', 'Textual', '1', '0', 'Fin !', 'IA >> Nous nous sommes assez éloigné du vaisseau pour éviter que son explosion nous touche. Félicitation. Vous n\'êtes plus en situation de mort immédiate ! Cette navette a été conçue pour permettre à tout un équipage d\'attendre un sauvetage. Il ne reste plus qu\'à faire ça... Attendre...'),
+('4', '2', 'End', '1', '0', 'Continuer', 'NA'),
+('3', '1', 'Textual', '1', '1', 'Moteur', 'AI >> Bravo **$$\'avoir réussi à démarrer le vaisseau malgré **$$\'roblème de sécurit**$$\' ! J\'ai une bonne et une mau**$$\'se nouvelle pour vous : Nous partons loin du vaisseau qui va exploser, mais droit vers un astéroïde.'),
+('3', '2', 'Textual', '0', '0', 'Phares', 'AI >> Oui... les phares... Je crois qu\'ils sont utiles pendant les exploration rapprochées. Dans le vide il n\'y a pas grand chose a éclairer.'),
+('3', '3', 'Textual', '0', '1', 'Freins', 'IA >> Pas bête Les Freins **$$! Mais à cette vitesse ça vous tuerait. Vraiment je ne peux pas vous laisser faire ça, désol$$!!*'), 
+('3', '4', 'Textual', '0', '1', 'Airbag', 'IA >> Oui, ils sont amusants ces Airbags, non ? Il me semble que les des9%%*s voulaient mettre des harnais de séc**!!és, mais il y a eu des coupes budgétaires...'),
+('3', '5', 'Textual', '0', '1', 'Placard', 'IA >> Oooooh !!**ù% Des gateaux ! et un casque... Je serais vous, je le mettrais, ça va secouer. Quoique tout compte fait, je ne suis pas certain que ça fasse une grande différence.');
+
+
+
+
+

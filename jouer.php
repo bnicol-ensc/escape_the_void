@@ -29,11 +29,13 @@ if(!isset($_SESSION['eg_id'])) {
 
 ?>
 <body onload="setInterval('chat.update()', 1000)">
+
      <div class="background">
      <?php require_once("includes/nav.php");?>
         <div class="container-fluid">
             <?php       
                     
+                    $End = TRUE;
 
                     if($BDD){
                         $MaRequete = "SELECT * FROM bouton WHERE eng_id=".$_SESSION['eng_id']." ORDER BY btn";
@@ -62,18 +64,20 @@ if(!isset($_SESSION['eg_id'])) {
                                 $STH2 -> execute();
                                 $data['btn_active'] = 0;
                             }
+                            
                             if($data['btn_expected'] != $data['btn_active']){
                                 $val = FALSE;
                             }
+                            if($data['btn_type'] == 'End'){
+                                $End = FALSE;
+                            }
                             $data_array[] = $data;
-
-
-                            
                         }
                          if($val == TRUE && $i != 0) {
                             $_SESSION['eng_id'] += 1;
                             $time_temp = (date("s") + date("m")*60+date("h")*3600);
-                            $MaRequete = "UPDATE enigmecours SET finie = 1, temps =".($time_temp - $_SESSION['eng_time'])."  WHERE equipe='".$_SESSION['login']."'";
+                            $MaRequete = "  UPDATE enigmecours SET finie = 1, temps =".($time_temp - $_SESSION['eng_time'])."  WHERE equipe='".$_SESSION['login']."'; 
+                                            INSERT INTO `enigmecours` (`equipe`,`eng_id`, `finie`) VALUES ('".$_SESSION['login']."', '".$_SESSION['eng_id']."', '0');";                                            
                                 $STH2 = $BDD -> prepare( $MaRequete );
                                 $STH2 -> execute();
                             $_SESSION['eng_time'] = $time_temp;
@@ -89,20 +93,28 @@ if(!isset($_SESSION['eg_id'])) {
                     <form action="jouer.php" method="post">
                         <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
                             <?php 
-                                
-                                foreach($data_array as $data) {
-                                    echo "<label class=\"switch \">";
-                                    if(isset($data['btn_active']) && $data['btn_active'] == 1)
-                                        echo "<input class=\"switch-input\" checked  name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
-                                    else echo "<input class=\"switch-input \" name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
-
-                                    echo "<span class=\"switch-label\" data-on=\"".$data['btn_name']."\" data-off=\"".$data['btn_name']."\"></span> ";
-                                    echo "<span class=\"switch-handle\"></span></label>";
+                                if($End){
+                                    echo $i."</br>";
+                                    echo $_SESSION['eng_id'];
+                                    foreach($data_array as $data) {
+                                        echo "<label class=\"switch \">";
+                                        if(isset($data['btn_active']) && $data['btn_active'] == 1)
+                                            echo "<input class=\"switch-input\" checked  name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
+                                        else echo "<input class=\"switch-input \" name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
+    
+                                        echo "<span class=\"switch-label\" data-on=\"".$data['btn_name']."\" data-off=\"".$data['btn_name']."\"></span> ";
+                                        echo "<span class=\"switch-handle\"></span></label>";
+                                    }
                                 }
+                                else {
+                                    echo "<a class=\"btn btn-primary\" href=\"terminer_partie.php\">Continuer</a>";
+                                }
+                                
+
                             ?>
 
                                     
-                            <div class="btn-group" role="group">
+<!--                             <div class="btn-group" role="group">
                                 <div class="col-auto my-1">
                                     <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
                                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -112,7 +124,7 @@ if(!isset($_SESSION['eg_id'])) {
                                         <option value="3" disabled>Générateur Secondaire</option> 
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                         
 
                             <button class="btn btn-warning" type="submit">
@@ -161,7 +173,7 @@ if(!isset($_SESSION['eg_id'])) {
             var aText = new Array(
             <?php 
                 foreach($data_array as $data) {
-                    if($data['btn_type']=='Textual' && isset($_POST[$data['btn_name']])){
+                    if($data['btn_type']=='Textual' && $data['btn_active']==1){
                         echo "\"";
                         echo $data['btn_content'];
                         echo "\","; 
