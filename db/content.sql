@@ -21,7 +21,7 @@ VALUES ('1', '1', 'Textual', '1', '0', 'Lumière', "Dans le centre de commande, 
 ('2', '2', 'Textual', '0', '0', 'Load', 'Vaisseau >> l\'Intelligence artificielle du vaisseau a été chargée dans la navette de secours.</br>Vaisseau >> ERR4532 L\'IA du vaisseau est défectueuse. Il est déconseillé de l\'activer'),
 ('2', '3', 'Textual', '0', '1', 'AI ', 'Vaisseau >> ERR5698 IA défectueuse</br>Vaisseau : IA >> Bonjour utilisateur... Veuillez décoller au plus vite, votre vie est en danger. Laissez moi vous aider</br>Vaisseau >> OVERRIDE IA : IA défectueuse. mise en quarantine.'),
 ('2', '4', 'Textual', '0', '1', 'Démarrer', 'Vaisseau >> Lancement prêt. Attention, l\'utilisation de cette navette de secours doit suivre le protocole exacte du manuel sous peine d\'annulation de garantie.'),
-('1', '2', 'Textual', '0', '1', 'Alerte', 'Vaisseau >> Vos Alertes sont : Risque de mort 79%. Vaisseau endommagé. Réservoir d\'oxygène défectueux. Ne paniquez pas, car un équipage paniqué a 99.99% de chances de mourir dans les 15 premières minutes.</br>Vaisseau >> Le mode alerte passe tout le vaisseau en mode déverrouillage manuel. Pour votre sécurité, veuillez le désactiver.'),
+('1', '2', 'Textual', '0', '1', 'Info', 'Vaisseau >> Le mode alerte passe tout le vaisseau en mode déverrouillage manuel. Pour votre sécurité, veuillez le désactiver. </br>Vaisseau >>  Le Materiel de communication longue distance est endommagé ou perdu. La StarCorp vous informe que le materiel est sous la responsabilité de l'équipage, qui devra le rembourser en cas de perte ou vol.'),
 ('1', '3', 'Textual', '0', '1', 'Porte', 'Vaisseau >> ERR4598 les portes sont verrouillées. Le système de verrouillage est bloqué pendant la durée de la situation dangereuse pour votre sécurité.'),
 ('2', '3', 'Textual', '0', '1', 'IA', 'Vaisseau >> ** Danger ** Cette fonction est déconseillée en mode sécurisé **Danger**</br>IA >> Bonjour.</br>IA >> J\'ai analysé la situation. Je vais déverrouiller la séquence de lancement pendant que vous démarrez. Laissez moi le temps de donner des ordres au vaissea**STOP**</br>Vaisseau >> OVERRIDE tentative d\'intrusion détectée. Destruction de l\'agent étranger en cours[10%] '),
 ('4', '1', 'Textual', '1', '0', 'Fin !', 'IA >> Nous nous sommes assez éloigné du vaisseau pour éviter que son explosion nous touche. Félicitation. Vous n\'êtes plus en situation de mort immédiate ! Cette navette a été conçue pour permettre à tout un équipage d\'attendre un sauvetage. Il ne reste plus qu\'à faire ça... Attendre...'),
@@ -31,6 +31,10 @@ VALUES ('1', '1', 'Textual', '1', '0', 'Lumière', "Dans le centre de commande, 
 ('3', '3', 'Textual', '0', '1', 'Freins', 'IA >> Pas bête Les Freins **$$! Mais à cette vitesse ça vous tuerait. Vraiment je ne peux pas vous laisser faire ça, désol$$!!*'), 
 ('3', '4', 'Textual', '0', '1', 'Airbag', 'IA >> Oui, ils sont amusants ces Airbags, non ? Il me semble que les des9%%*s voulaient mettre des harnais de séc**!!és, mais il y a eu des coupes budgétaires...'),
 ('3', '5', 'Textual', '0', '1', 'Placard', 'IA >> Oooooh !!**ù% Des gateaux ! et un casque... Je serais vous, je le mettrais, ça va secouer. Quoique tout compte fait, je ne suis pas certain que ça fasse une grande différence.');
+
+INSERT INTO `indice` (`indice_id`, `indice_text`, `eng_id`)
+VALUES (NULL, 'La porte peut être ouverte si l\'on met l\'ordinateur de bord en état d\'alerte', '1'),
+(NULL, 'Essayez de cliquer sur chaque bouton indépendamment pour lire les informations facilement avant d\'essayer des combinaisons', '1');
 
 
 

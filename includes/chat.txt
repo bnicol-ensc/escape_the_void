@@ -23,3 +23,11 @@
 <span>test :</span> Mat&eacute;o n'est pas un astronaute !
 <span>maeva :</span> a 
 <span>Gandalf :</span> Message 
+<span>Ender :</span> Je ne trouve pas la r&eacute;ponse 
+<span>Gandalf :</span> Test 
+<span>Gandalf :</span> La porte peut &ecirc;tre ouverte si l'on met l'ordinateur de bord en &eacute;tat d'alerte
+<span>Gandalf :</span> La porte peut &ecirc;tre ouverte si l'on met l'ordinateur de bord en &eacute;tat d'alerte
+<span>Gandalf :</span> Essayez de cliquer sur chaque bouton ind&eacute;pendamment pour lire les informations facilement avant d'essayer des combinaisons
+<span>Gandalf :</span> La porte peut &ecirc;tre ouverte si l'on met l'ordinateur de bord en &eacute;tat d'alerte
+<span>Gandalf :</span> Essayez de cliquer sur chaque bouton ind&eacute;pendamment pour lire les informations facilement avant d'essayer des combinaisons
+<span>Gandalf :</span> Essayez de cliquer sur chaque bouton ind&eacute;pendamment pour lire les informations facilement avant d'essayer des combinaisons
