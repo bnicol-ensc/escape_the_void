@@ -9,6 +9,7 @@
     $pageTitle = "Connexion";
     require_once("includes/head.php");
 
+ // On récupère les parties qui appartiennent à l'équipe qui vient de terminer sa partie
 include_once('includes/connect.php');
 $MaRequete = "SELECT * FROM enigmecours WHERE equipe='".$_SESSION['login']."' ORDER BY eng_id";
     $STH = $BDD -> prepare( $MaRequete );
@@ -17,9 +18,10 @@ $MaRequete = "SELECT * FROM enigmecours WHERE equipe='".$_SESSION['login']."' OR
     $val = TRUE;
     
 
-
+//On passe les information dans la table de statistiques permanentes
 $MaRequete2 = "INSERT INTO `statistiqueenigme` (`eng_id`, `temps`, `equipe`) VALUES";
 $i = 0;
+//En fonction du nombre de lignes, on ajoute toutes les valeurs
 while($data = $STH->fetch()) {
     
     if($data['temps'] != 0) {
@@ -28,6 +30,7 @@ while($data = $STH->fetch()) {
         $i++;
     }
 }
+//Supression des information dans le tables en cours maintenant qu'elles ont été transférées dans statistiques et que la partie est terminée.
 if ($i != 0) {
     $MaRequete2 .="; DELETE FROM `escapegamecours` WHERE `eng_cours`= '".$_SESSION['login']."'; DELETE FROM `enigmecours` WHERE `equipe`= '".$_SESSION['login']."';";
 }
@@ -37,7 +40,7 @@ else {
     $STH2 = $BDD -> prepare( $MaRequete2 );
     $STH2 -> execute();
     $STH2 = NULL;
-     
+     //On réinitialise la variable temporelle
 $_SESSION['eng_time'] = NULL;
 
 ?>
@@ -50,7 +53,7 @@ $_SESSION['eng_time'] = NULL;
         ?>
 
         <div class="container_login_register">
-        
+        <!-- On prépare les données pour afficher les statistiques -->
         <?php
             if($BDD){
                 $MaRequete_stats = "Select * From statistiqueenigme WHERE equipe ='".$_SESSION['login']."';";
@@ -61,7 +64,7 @@ $_SESSION['eng_time'] = NULL;
                 $result_contenu_stats = $sth_stats -> fetchAll();
             }
         ?>
-       
+       <!-- On affiche les résultats du joueur dans une carte, en le félicitant d'avoir joué -->
         <div class="d-flex justify-content-center h-100">
             <div class="card_login">
                 
@@ -95,6 +98,7 @@ $_SESSION['eng_time'] = NULL;
                         Merci d'avoir participé !
                     </div>
                     <div class="d-flex justify-content-center">
+                    // redirection vers l'accueil
                         <a class="btn btn-primary" href="index.php">Terminé</a>
                     </div>
                 </div>
@@ -105,6 +109,7 @@ $_SESSION['eng_time'] = NULL;
 
     </div>
     <?php
+            // Réinitialisation complète des variables pour que le joueur puisse recommencer une prochaine partie
             $_SESSION['eng_id'] = NULL;
             $_SESSION['eg_id'] = NULL;
         require_once("includes/footer.php");

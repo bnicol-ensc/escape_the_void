@@ -17,7 +17,7 @@
             require_once("includes/connect.php");
             require_once("includes/connect.php");
     ?>
-
+        <!-- Le carousel donne les escapeGame vedettes, il reprend donc les trois parties dont on a développé un résumé -->
         <div class="bd-example">
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -60,7 +60,7 @@
         </div>
 
         <div class="container-fluid">
-            
+            <!-- Ici l'appel a le base de donnée permet de créer des cartes avec une référence à chaque escapeGame qu'elle contient -->
         <div class="row liste">
             <?php
                 if($BDD){
@@ -78,13 +78,15 @@
                         echo "<li class=\"list-group-item\">"."Dapibus ac facilisis in"."</li>";
                         echo "</ul>";
                         echo "<div class=\"card-body\">";
-                        
+                        /* Si le joueur n'est pas connecté, on lui propose de se connecter ou de s'inscrire. Sinon il peut jouer. */
                         if(!isset($_SESSION['login']) ) {
-                            echo "<a href=\"login.php\" class=\"btn btn-card\">Jouer</a>"; // Attention il faut que la page login enregistre où elle doit nous amener ensuite ! Sinon c'est retour à l'index et frustration gratuite
+                            echo "<a href=\"login.php\" class=\"btn btn-card\">Se Connecter</a>"; 
                             echo "<a href=\"register.php\" class=\"btn btn-card-secondary\">S'enregistrer</a>";
                         }
                         else echo "<a href=\"jouer.php?id=".$tuple["eg_id"]."\" class=\"btn btn-card\">Jouer</a>";
                         echo "</div></div></div>";
+                        /* Gestion du retour à la ligne : si on a affiché 4 escapegames, on créé in nouveau row et on recommence.
+                        De cette manière les colonnes gardent une taille raisonnable. */
                         if($i == 3) {
                             echo "</div><div class=\"row liste\">";
                             $i = 0;

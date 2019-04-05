@@ -8,6 +8,7 @@
 <?php require_once("includes/head.php");
 require_once("includes/connect.php");
 
+//Assignation des variables de session propre à la partie de l'utilisateur lors de son début de partie.
 if(!isset($_SESSION['eng_id'])) {
 
     $_SESSION['eng_id'] = 1;
@@ -29,13 +30,13 @@ if(!isset($_SESSION['eg_id'])) {
 
 ?>
 <body onload="setInterval('chat.update()', 1000)">
-
+<!-- Une div est réservée à l'image d'arrière plan -->
      <div class="background">
      <?php require_once("includes/nav.php");?>
         <div class="container-fluid">
             <?php       
                     
-                    $End = TRUE;
+                    $End = TRUE; // Cette variable vérifie si l'énigme est la dernière énigme ou si la partie peur continuer.
 
                     if($BDD){
                         $MaRequete = "SELECT * FROM bouton WHERE eng_id=".$_SESSION['eng_id']." ORDER BY btn";
@@ -46,6 +47,7 @@ if(!isset($_SESSION['eg_id'])) {
                         $STH -> execute();
                         $i = 0;
                         $val = TRUE;
+                        // pour chaque bouton sélectionné, on le crée
                         while($data = $STH->fetch()) {
                             $i+=1;
                             // Si dessous pour conserver l'activation des boutons après leur activation
@@ -64,15 +66,17 @@ if(!isset($_SESSION['eg_id'])) {
                                 $STH2 -> execute();
                                 $data['btn_active'] = 0;
                             }
-                            
+                            // On verifie si on est dans la bonne configuration pour passer à l'énigme suivante.
                             if($data['btn_expected'] != $data['btn_active']){
                                 $val = FALSE;
                             }
+                            //On vérifie si un bouton de fin est présent dans l'énigme.
                             if($data['btn_type'] == 'End'){
                                 $End = FALSE;
                             }
                             $data_array[] = $data;
                         }
+                        // On passe a l'énigme suivante en mettant à jour les variables de session et la base de donnée.
                          if($val == TRUE && $i != 0) {
                             $_SESSION['eng_id'] += 1;
                             $time_temp = (date("s") + date("m")*60+date("h")*3600);
@@ -98,6 +102,8 @@ if(!isset($_SESSION['eg_id'])) {
                                     echo $_SESSION['eng_id'];
                                     foreach($data_array as $data) {
                                         echo "<label class=\"switch \">";
+
+                                        // on fabrique les boutons sur lesquels le joueur va pouvoir cliquer.
                                         if(isset($data['btn_active']) && $data['btn_active'] == 1)
                                             echo "<input class=\"switch-input\" checked  name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
                                         else echo "<input class=\"switch-input \" name=\"".$data['btn_name']."\" type=\"checkbox\" value=\"1\"/>";
@@ -107,14 +113,19 @@ if(!isset($_SESSION['eg_id'])) {
                                     }
                                 }
                                 else {
+                                    // si la partie est terminée, un bouton continuer permet de terminer la partie.
                                     echo "<a class=\"btn btn-primary\" href=\"terminer_partie.php\">Continuer</a>";
+                                    $time_temp = (date("s") + date("m")*60+date("h")*3600);
+                                    $MaRequete = "  UPDATE enigmecours SET finie = 1, temps =".($time_temp - $_SESSION['eng_time'])."  WHERE equipe='".$_SESSION['login']."';"                                    $STH2 = $BDD -> prepare( $MaRequete );
+                                    $STH2 -> execute();
                                 }
                                 
 
                             ?>
 
-                                    
-<!--                             <div class="btn-group" role="group">
+     <!-- Ici était une expérience sur un type de bouton différent pour les énigmes. -->   
+
+<!--                            <div class="btn-group" role="group">
                                 <div class="col-auto my-1">
                                     <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
                                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -125,6 +136,9 @@ if(!isset($_SESSION['eg_id'])) {
                                     </select>
                                 </div>
                             </div> -->
+
+        <!-- Ici était une expérience sur un type de bouton différent pour les énigmes. -->   
+
                         
 
                             <button class="btn btn-warning" type="submit">
@@ -136,6 +150,7 @@ if(!isset($_SESSION['eg_id'])) {
 
                 </div>
                 <div class="col-md-6 d-flex">
+                <!--  l'affichage de la console, et l'identification de la zone ou typewritter.js peut agir -->
                     <div class="console w-100 mh-100 rounded">
                         <div id="typedtext"></div>
                     </div>
@@ -143,6 +158,7 @@ if(!isset($_SESSION['eg_id'])) {
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-6">
+                        <!-- Le chat d'aide, caché derrière un bouton pour qu'il ne l'utilise qu'en cas de problème et essaye de chercher par lui même -->
                             <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#chatbox" aria-expanded="false" aria-controls="chatbox">
                             Demande d'aide
                             </button>
@@ -160,6 +176,7 @@ if(!isset($_SESSION['eg_id'])) {
                             </div>
                         </div>
                         <div class="col-md-6">
+                        <!-- Redirection vers une fin de partie -->
                         <a class="btn btn-secondary" href="terminer_partie.php" role="button">Abandonner</a>
                         </div>
                     </div>
@@ -169,7 +186,7 @@ if(!isset($_SESSION['eg_id'])) {
     </div>
 
         <script>
-
+            /* Préparation de la variable qui sera utilisée par typewriter.js pour animer les informations dans la console */
             var aText = new Array(
             <?php 
                 foreach($data_array as $data) {
@@ -195,7 +212,7 @@ if(!isset($_SESSION['eg_id'])) {
 
             // get user name from session    
             var name = '<?php echo $_SESSION['login'];?>'
-
+/* Chat */
             // kick off chat
             var chat =  new Chat();
             $(function() {
