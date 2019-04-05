@@ -5,5 +5,6 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="lib/fontawesome/css/all.css" rel="stylesheet">
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Titre de la page + sous-titre s'il a été défini en PHP -->
     <title>Escape Game <?php if (isset($pageTitle)) echo " - $pageTitle"; ?></title>
 </head>

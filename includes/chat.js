@@ -1,8 +1,5 @@
-/* 
-Created by: Kenrick Beckett
-
-Name: Chat Engine
-*/
+//Utilisation d'Ajax afin de réaliser les transfert de données pour le chat
+//Données utilisant le format JSON et stockées dans un fichier de logs appelé "chat.txt"
 
 var instanse = false;
 var state;
@@ -15,7 +12,7 @@ function Chat () {
 	this.getState = getStateOfChat;
 }
 
-//gets the state of the chat
+//Récupère l'état actuel du chat
 function getStateOfChat(){
 	if(!instanse){
 		 instanse = true;
@@ -36,7 +33,7 @@ function getStateOfChat(){
 	}	 
 }
 
-//Updates the chat
+//Met à jour le contenu du chat
 function updateChat(){
 	 if(!instanse){
 		 instanse = true;
@@ -66,7 +63,7 @@ function updateChat(){
 	 }
 }
 
-//send the message
+//Permet d'envoyer un message dans le chat
 function sendChat(message, nickname)
 {       
     updateChat();

@@ -43,12 +43,14 @@
                             <label class="form-check-label" for="admin">Administrateur</label>
                         </div>
                         <?php
+                            //Vérification que les champs ne sont pas vides
                             if((isset($_POST['login'])) && (isset($_POST['password']))){
                                 $login = escape($_POST['login']);
                                 $password = escape($_POST['password']);
 
                                 if($BDD){
                                         
+                                    //Récupération des utilisateurs de la BD en fonction de leur statut
                                     if(isset($_POST['admin'])){
                                         $MaRequete = "SELECT * FROM user_mj WHERE usr_login='" . $login . "'";
                             
@@ -63,6 +65,7 @@
                                 }
                                 $tuple = $Curseur->fetch();
 
+                                //Comparaison de l'existence de l'utilisateur et vérification du mot de passe à l'aide des fonctions de hashage
                                 if(($login == $tuple['usr_login']) && (password_verify($password, $tuple['usr_password']))){
                                     $_SESSION['login'] = $login;
                                     if(isset($_POST['admin'])){

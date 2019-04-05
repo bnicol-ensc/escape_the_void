@@ -43,13 +43,16 @@
                         </div>
 
                         <?php
+                            //Vérification que les champs ne sont pas vides
                             if(isset($_POST['login']) && isset($_POST['nom_equipe']) && isset($_POST['password']) && isset($_POST['password_rpt'])){
+                                //Modification des entrées pour éviter les injections
                                 $login = escape($_POST['login']);
                                 $nom_equipe = escape($_POST['nom_equipe']);
                                 $password = escape($_POST['password']);
                                 $password_rpt = escape($_POST['password_rpt']);
 
                                 if($password == $password_rpt){
+                                    //hashage du mot de passe avant l'insertion dans la base de données
                                     $hash = password_hash($password, PASSWORD_DEFAULT);
                                     $req = $BDD->prepare('INSERT INTO user_equipe (usr_nom, usr_login, usr_password) VALUES(:nom_equipe, :login, :password)');
                                     $req->execute(array(
@@ -66,6 +69,7 @@
                                         $error_message = "Problème durant l'insciption. Veuillez réessayer !";	
                                     }
 
+                                    //Affectation des variables de sessions puis redirection sur la page d'acceuil
                                     $_SESSION['login'] = $login;
                                     redirect("index");
                                 } else {

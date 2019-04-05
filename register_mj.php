@@ -39,12 +39,15 @@
                         </div>
 
                         <?php
+                        //Vérifie que les champs ne sont pas vides
                             if(isset($_POST['login']) && isset($_POST['password']) && isset($_POST['password_rpt'])){
+                                //Modification des entrées afin d'éviter les injections
                                 $login = escape($_POST['login']);
                                 $password = escape($_POST['password']);
                                 $password_rpt = escape($_POST['password_rpt']);
 
                                 if($password == $password_rpt){
+                                    //Hashage du mot de passe avant insertion dans la base de données
                                     $hash = password_hash($password, PASSWORD_DEFAULT);
                                     $req = $BDD->prepare('INSERT INTO user_MJ (usr_login, usr_password) VALUES(:login, :password)');
                                     $req->execute(array(
@@ -60,6 +63,7 @@
                                         $error_message = "Problème durant l'insciption. Veuillez réessayer !";	
                                     }
 
+                                    //Affectation des variables de session à la fin de l'inscription pour ne pas avoir a se connecter ensuite
                                     $_SESSION['login'] = $login;
                                     $_SESSION['admin'] = true;
                                     redirect("index");

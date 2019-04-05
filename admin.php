@@ -22,24 +22,21 @@
     
          chat.getState(); 
          
-         // watch textarea for key presses
          $("#sendie").keydown(function(event) {  
          
              var key = event.which;
        
-             //all keys including return.  
              if (key >= 33) {
                
                  var maxLength = $(this).attr("maxlength");  
                  var length = this.value.length;  
                  
-                 // don't allow new content if length is maxed out
                  if (length >= maxLength) {  
                      event.preventDefault();  
                  }  
               }  
                                                                                                                                                                                                          });
-         // watch textarea for release of key press
+
          $('#sendie').keyup(function(e) {	
                               
               if (e.keyCode == 13) { 
@@ -48,7 +45,7 @@
                 var maxLength = $(this).attr("maxlength");  
                 var length = text.length; 
                  
-                // send 
+                // Envoi du message
                 if (length <= maxLength + 1) { 
                  
                     chat.send(text, name);	
@@ -68,7 +65,7 @@
 </script>
 
 
-
+<!-- appelle la méthode chat.update() afin de mettre a jour le chat sans avoir a recharger la page -->
 <body onload="setInterval('chat.update()', 1000)" class="d-flex flex-column">
 
     <div class="background">
@@ -77,6 +74,7 @@
             require_once("includes/nav.php");
             require_once("includes/connect.php");
         
+                //Récupération de tous les escapes games en cours afin de générer les onglets de navigation pour le mj
                 if($BDD){
                     $MaRequete = "Select * From escapegamecours;";
 
@@ -89,12 +87,15 @@
 
         <div class="container-fluid h-100">
 
+<!-- Vérification que l'utilisateur est connecté et qu'il possède bien le statut de mj avant d'afficher la page
+     Sinon affichage d'un message d'interdiction d'accès -->
 <?php if(isset($_SESSION['admin'])){ ?>
 
 
 
         <ul class="nav nav-tabs">
             <?php
+                //Génération des onglets pour la gestion des différents escape game
                 for($i=0;$i<count($result);$i++){
                     echo "<li class=\"nav-item\">";
                     echo "<a class=\"nav-link\" href=\"#p" . ($i+1) . "\" data-toggle=\"tab\">Escape game " . ($i+1) . "</a>";
@@ -110,7 +111,9 @@
         <div class="tab-content">
             <?php
                 for($i=0;$i<count($result);$i++){
+                    //Récupération des différents éléments nécessaires à chaque affichage pour l'administration du mj
                     if($BDD){
+                        //Caractéristiques des escape game
                         $MaRequete = "Select eg_id, eg_nom, eg_temps_max From escapegame
                                     Where eg_id =" . $result[$i]['eg_id'] . ";";
     
@@ -119,7 +122,7 @@
 
                         $result_contenu = $sth -> fetch();
 
-
+                        //Données des équipes
                         $MaRequete_equipe = "Select usr_nom From user_equipe
                         Where usr_login ='" . $result[$i]['eng_cours'] . "';";
 
@@ -128,7 +131,7 @@
 
                         $result_contenu_equipe = $sth_equipe -> fetch();
 
-
+                        //Données des énigmes
                         $MaRequete_enigme = "Select e.eng_content, ec.temps, ec.finie, e.eng_id  From enigmecours ec, enigme e
                         Where ec.equipe ='" . $result[$i]['eng_cours'] . "'
                         And ec.eng_id = e.eng_id;";
@@ -146,7 +149,7 @@
                     echo "<div class=\"row\">";
 
                     echo "<div class=\"col-9\">";
-
+                    //Affichage des principales caractéristiques de l'escape game en cours
                     echo "<div class=\"card bg-dark col-6\">";
                     echo "<div class=\"card-header\"><h2>Description : </h2></div>";
                     echo "<div class=\"card-body\">";
@@ -169,7 +172,7 @@
                       </tr>
                     </thead>
                     <tbody>";
-
+                    //Affichage du tableau contenant les énigmes réalisées par l'équipe jusqu'à l'énigme en cours, ainsi que les boutons d'envoi d'indice
                     for($j=0;$j<count($result_contenu_enigme);$j++){
                         echo "<tr>";
                         echo "<td><p>" . ($j+1) . "</p></td>";
@@ -211,6 +214,7 @@
                     echo "</tbody>
                     </table>";
 
+                    //Zone de chat
                     echo "</div>";
                     echo "<div id=\"chatbox\" class=\"col-3\">
                     <div class=\"container-fluid row h-100\">
@@ -234,8 +238,10 @@
                 }
             ?>
 
+            <!-- Génération du panneau de statistique pour le maitre du jeu -->
             <div class="tab-pane" id="pstat">
             <?php
+                //Récupération des statistiques dans la base de données
                 if($BDD){
                     $MaRequete_stats = "Select * From statistiqueenigme;";
 
@@ -253,7 +259,9 @@
                             <div class="card-body">
 
                                 <?php
+                                    //Vérification qu'il y a bien des stats
                                     if(count($result_contenu_stats) != 0){
+                                        //Calcul du temps moyen des énigmes
                                         $somme = 0;
                                         for($it=0;$it<count($result_contenu_stats);$it++){
                                             $somme += $result_contenu_stats[$it]['temps'];

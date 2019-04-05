@@ -22,17 +22,20 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <?php
         if(isset($_SESSION['admin'])){
+          //Affiche le lien vers la page d'administration si l'utilisateur connecté est un mj
           echo "<a class=\"dropdown-item\" href=\"admin.php\">Page d'administration</a>";
         }
         ?>
         <a class="dropdown-item" href=
           <?php 
+            //Lien vers la page s'inscrire si l'utilisateur n'est pas connecté
             if(!isset($_SESSION['login'])) echo "'register.php'";?>>
           <?php 
             if(!isset($_SESSION['login'])) echo 'S\'inscrire';?>
         </a>
         <a class="dropdown-item" href=
           <?php 
+            //Lien vers la page de déconnexion si l'utilisateur est connecté
             if(isset($_SESSION['login'])) echo "'logout.php'";
             else echo "'login.php'";?>>
           <?php 
